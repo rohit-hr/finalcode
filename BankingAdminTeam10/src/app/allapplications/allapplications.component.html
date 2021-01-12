@@ -1,0 +1,69 @@
+<p ><strong style="color: blue;align-content: center;" >All Customer Applications</strong></p>
+  <table >
+    <tr>
+      <th>Reference_id</th>
+      <th>Name</th>
+      <th>View Profiles</th>
+    </tr>
+    <tr *ngFor="let cust of Customers">
+      <td style="width:30%">{{cust.Reference_id}}</td>
+      <td style="width:30%">{{cust.First_name}}   {{cust.middle_name}} {{cust.Last_name}}</td>
+      <td>
+      <button class="button" (click)="getCustomerProfile(cust.Reference_id)">ViewProfile</button>
+     </td>
+    </tr>
+  <table>
+<div *ngIf="CustomerProfile">
+    <div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+      <div class="modal-dialog">
+        <div class="modal-content">  
+         <div *ngFor="let c of CustomerProfile"> 
+          <div class="modal-body" style="background-color: cadetblue;">
+            <strong>Reference_id:</strong>{{c.Reference_id}}<br>
+            <strong>First_Name:</strong>{{c.First_name}}<br>
+            <strong>Middle_Name:</strong>{{c.middle_name}}<br>
+            <strong>Last_name:</strong>{{c.Last_name}}<br>
+            <strong>Age:</strong>{{c.age}}<br>
+            <strong> Gender:</strong>{{c.gender}}<br>
+            <strong> Email:</strong>{{c.email_id}}<br>
+             <strong> Father_Name:</strong>{{c.Father_name}}<br>
+             <strong> mobile_number:</strong>{{c.mobile_number}}<br>
+             <strong> account_type:</strong>{{c. account_type}}<br>
+             <strong> aadhar_number:</strong>{{c. aadhar_number}}<br>
+             <strong>date of birth:</strong>{{c.date_of_birth}}<br>
+             <strong> Residential Address:</strong>{{c.Residential_address}}<br>
+             <strong>permanent_address:</strong>{{c. permanent_address}}<br>
+             <strong> occupation_Type:</strong>{{c.occupation_Type}}<br>
+             <strong> source_of_income:</strong>{{c.source_of_income}}<br>
+             <strong> gross_income:</strong>{{c. gross_income}}<br>
+             <strong>account_OpenDate:</strong>{{c. account_OpenDate}}
+            <div class="modal-footer">
+             <button class="btn btn-success" data-dismiss="modal" (click)="UpdateStatus(c)">Approve</button>
+             <button class="btn btn-danger" data-dismiss="modal" (click)="updateRejectStatus(c)">Reject</button>
+             <button class="btn btn-primary" data-dismiss="modal"  (click)="hide()">close</button>
+            </div> 
+               
+          </div>
+       </div>
+     </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="myModal" [style.display]="show ? 'block' : 'none'">
+  <div class="modal-dialog">
+     <div class="modal-content">  
+       <div class="modal-body" style="background-color: cornsilk;">
+         <div *ngIf="flag">
+            <div class="modal-body">
+               Customer approved
+             <div class="modal-footer">
+               <button class="btn btn-primary" (click)="adminhome()">ok</button>
+               <button class="btn btn-primary" (click)="sendmail()">sendmail</button>
+             </div>
+            </div>
+         </div>
+       </div>
+    </div> 
+  </div>
+</div> 
+

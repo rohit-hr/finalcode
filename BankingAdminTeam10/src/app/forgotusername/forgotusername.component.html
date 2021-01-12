@@ -1,0 +1,26 @@
+<html>
+    <body>
+        
+           <label>Email Address</label>
+           <input type="email" [(ngModel)]="email"><br>
+           <label>confirm your Email Address</label>
+           <input type="email" [(ngModel)]="email"><br> 
+           <button class="btn btn-primary" (click)="getUsername()">send</button> 
+           <div class="modal" id="myModal" [style.display]="showModel ? 'block' : 'none'">
+            <div class="modal-dialog">
+               <div class="modal-content">  
+                 <div class="modal-body" style="background-color: cadetblue;">
+                   <div *ngIf="flag">
+                      <div class="modal-body">
+                         successfully send username to your mail
+                       <div class="modal-footer">
+                         <button class="btn btn-primary" (click)="home()">ok</button>
+                       </div>
+                      </div>
+                   </div>
+                 </div>
+              </div> 
+            </div>
+        </div>   
+    </body>
+</html>

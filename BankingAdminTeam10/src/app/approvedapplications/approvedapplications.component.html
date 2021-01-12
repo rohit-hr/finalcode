@@ -1,0 +1,17 @@
+<p>approvedapplications</p>
+<table>
+    <tr>
+      <th>Reference_id</th>
+      <th>Name</th>
+      <th>mobile_number</th>
+      <th>emailId</th>
+      <th>AadharNumber</th>
+    </tr>
+    <tr *ngFor="let cust of approvedApplications">
+      <td>{{cust.Reference_id}}</td>
+      <td>{{cust.First_name}}   {{cust.middle_name}} {{cust.Last_name}}
+      <td>{{cust.mobile_number}}</td>
+      <td>{{cust.email_id}}</td>
+      <td>{{cust.aadhar_number}}</td>
+    </tr>
+  </table>

@@ -1,0 +1,104 @@
+<header class="intro-header">
+
+    <!--Navbar-->
+    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+      <mdb-navbar-brand>
+        <a class="logo navbar-brand waves-light" id="head" mdbWavesEffect href="#"><strong>RDNSBanking</strong></a>
+      </mdb-navbar-brand>
+    </mdb-navbar> 
+
+
+    <!--Intro Section-->
+    <section class="view intro-2">
+      <div class="full-bg-img mask rgba-gradient">
+        <div class="container flex-center">
+          <div class="d-flex align-items-center content-height w-100">
+            <div class="row flex-center pt-5 mt-3 w-100">
+              <div class="col-md-6 text-center text-md-left mb-5">
+                <div class="white-text">
+                
+                  <hr color="white" class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+                   <h1 id="para">Smart Banking</h1>
+                  <h6 id="para" class="wow fadeInLeft" data-wow-delay="0.3s">
+                     Provides Customers with a rich,interactive
+                     and multi channel <br>
+                     banking experience</h6>
+                  <br>
+                  <a mdbBtn color="white"  class="wow fadeInLeft waves-light" data-wow-delay="0.3s"
+                    mdbWavesEffect>Learn more</a>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-xl-5 offset-xl-1">
+                <!--Form-->
+  
+                  <mdb-card class="wow fadeInRight" data-wow-delay="0.3s">
+                  <mdb-card-body>
+                    <!--Header-->
+                    <div class="text-center">
+                      <h3 class="white-text">
+                        <mdb-icon fas icon="user" class="text-white"></mdb-icon><strong>Admin Login</strong> </h3>
+                      <hr class="hr-light">
+                    </div>
+                    <!--Body-->
+                   
+                    <form [formGroup]="myForm" (ngSubmit)="onLogin()">
+                      <label class="form-control"  color="black"><strong>Username</strong></label>
+                      <input type="=text" class="form-control" placeholder="please enter username" name="username" id="username" formControlName="username" >
+                      <span *ngIf="username.touched && !username.valid">
+                          <span *ngIf="username.errors && username.errors.required">
+                            <span id="msg"><strong>Username cannot be empty</strong> </span>
+                            </span>
+                      </span>
+                      <label class="form-control"><strong>Password</strong></label>
+                      <input type="password" class="form-control" placeholder="please enter password" name="password" id="password" formControlName="password">
+                      <span *ngIf="password.touched && !password.valid">  
+                         <span *ngIf="password.errors && password.errors.required" >
+                             <span id="msg"><strong>Password cannot be empty</strong> </span>
+                         </span>
+                         <span *ngIf="password.errors && password.errors.pattern">
+                           <span id="msg"><strong> password has to be first capital letter followed by 3 small chars</strong></span>
+                         </span>
+                     </span>
+                     <div class="text-center mt-4">
+                      <button mdbBtn color="indigo" mdbWavesEffect>Login</button><br>
+                      <a routerLink="/forgotpassword">forgot password?</a><br>
+                      <a routerLink="/forgotusername">forgot username?</a>
+                     </div>
+                    </form>
+                  <div *ngIf="msg">
+                      {{msg}}
+                  </div>
+                  </mdb-card-body>
+                </mdb-card>               
+              </div>
+            </div>
+          
+          </div>
+          <footer>
+            <div class="row" style="text-align: center;">
+              <div class="column">
+                <i class='far fa-map' style='font-size:36px'></i>
+                <h2>Locate Us</h2>
+                Larsen and Toubro Infotech Campus<br>
+                Block-II, Mahape
+              </div>
+              <div class="column">
+                <i class='fas fa-phone' style='font-size:36px'></i>
+                <h2>Contact Us</h2>
+                <p>+91 9876543210 <br>24 Hour Hotline: 1800 000 0000</p>
+              </div>
+              <div class="column">
+                <i class="fas fa-envelope" style='font-size:36px'></i>
+                <h2>Email Us</h2>
+                <p>helpline@rdns.in</p>
+              </div>
+            </div>
+          </footer>
+        </div>
+     
+      </div>
+      
+    </section>
+   
+</header>

@@ -1,0 +1,51 @@
+export class Customer{
+    First_name:string;
+    Last_name:string;
+    middle_name:string;
+    Reference_id:number;
+   Father_name:string;
+   mobile_number:string;
+   email_id:string;
+   account_type:string;
+   aadhar_number:string;
+    date_of_birth:string;
+    age:number;
+    gender:string;
+    Residential_address:string;
+    permanent_address:string;
+    occupation_Type:string;
+    source_of_income:string;
+    gross_income:string;
+    account_OpenDate:string;
+    constructor(Reference_id:number=0,First_name:string="",Last_name:string="",middle_name:string="", Father_name:string="",
+    mobile_number:string="",email_id:string="", account_type:string="",
+    aadhar_number:string="",
+     date_of_birth:string="",
+     age:number=0,
+     gender:string="",
+     Residential_address:string="",
+     permanent_address:string="",
+     occupation_Type:string="",
+     source_of_income:string="",
+     gross_income:string="",
+     account_OpenDate:string=""){
+        this.Reference_id=Reference_id;
+        this.First_name=First_name;
+        this.Last_name=Last_name;
+        this.middle_name=middle_name;
+        this.Father_name=Father_name;
+        this.mobile_number=mobile_number;
+        this.aadhar_number=aadhar_number;
+        this.date_of_birth=date_of_birth;
+        this.age=age;
+        this.gender=gender;
+        this.Residential_address=Residential_address;
+        this.permanent_address=permanent_address;
+        this.occupation_Type=occupation_Type;
+        this.source_of_income=source_of_income;
+        this.gross_income=gross_income;
+        this.account_OpenDate=account_OpenDate;
+        this.account_type=account_type;
+        this.email_id=email_id;
+    }
+}
