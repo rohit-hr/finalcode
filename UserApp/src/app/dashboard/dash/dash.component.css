@@ -1,0 +1,44 @@
+p {
+    font-family: Lato;
+  }
+  
+  mat-sidenav-container,
+  mat-sidenav-content,
+  mat-sidenav {
+    height: 100%;
+  }
+  
+  mat-sidenav {
+    width: 200px;
+    background-color: #f4f4f4;
+  }
+
+  .mat-icon
+  {
+    font-size:50px
+  }
+
+  .column {
+    float: left;
+    width: 25%;
+    padding: 15px;
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .columnf {
+    float: left;
+    width: 33.33%;
+    padding: 15px;
+  }
+  
+  /* Clear floats after the columns */
+  .rowf:after {
+    content: "";
+    display: table;
+    clear: both;
+  }

@@ -1,0 +1,41 @@
+export class Customer
+{
+    First_name:string;
+    middle_name:string;
+    Last_name:string;
+    Father_name:string;
+    mobile_number:string;
+    email_id:string;
+    account_type:string;
+    aadhar_number:string;
+    date_of_birth:string;
+    age:string;
+    gender:string;
+    Residential_address:string;
+    permanent_address:string;
+    occupation_Type:string;
+    source_of_income:string;
+    gross_income:string;
+
+    constructor(fname:string="",mname:string="",lname:string="",fathername:string="",mobile:string="",
+    email:string="",acctype:string="",aadhar:string="",dob:string="",age:string="",gender:string="",
+    radd1:string="",padd1:string="",occtype:string="",sourceincome:string="",gincome:string="")
+    {
+        this.First_name=fname;
+        this.middle_name=mname;
+        this.Last_name=lname;
+        this.Father_name=fathername;
+        this.mobile_number=mobile;
+        this.email_id=email;
+        this.account_type=acctype;
+        this.aadhar_number=aadhar;
+        this.date_of_birth=dob;
+        this.age=age;
+        this.gender=gender;
+        this.Residential_address=radd1;
+        this.permanent_address=padd1;
+        this.occupation_Type=occtype;
+        this.source_of_income=sourceincome;
+        this.gross_income=gincome;
+    }
+}

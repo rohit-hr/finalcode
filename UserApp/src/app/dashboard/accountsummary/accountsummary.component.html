@@ -1,0 +1,43 @@
+<div class="card" style="width: 55rem;" *ngFor="let account of accountsummary">
+  
+   <div class="card-body">
+   <h1 class="card-title">Balance {{account.balance}}</h1>
+   <h3 class="card-text">Account Number: {{account.account_number}} </h3>
+   <button type="button"  class="btn btn-primary" (click)="ShowRecentTransactions()">See Recent Transactions</button>
+   </div>
+
+<div class="heading" *ngIf="recent_transactionstoggle">
+   <h1>Recent Transactions</h1>
+   <div class = "recent_transactions" *ngFor="let recent_transaction of recent_transactions">  
+      
+      <table class="table">
+         <thead class="thead-light">
+            <tr>
+              <th scope="col">Transaction Id</th>
+              <th scope="col">Transaction Type</th>
+              <th scope="col">Transaction Date:</th>
+              <th scope="col">Amount</th>
+              <th scope="col">From Account</th>
+              <th scope="col">To Account</th>
+            </tr>
+          </thead>
+         <tbody>
+         <tr>        
+            <th scope="row">{{recent_transaction.transaction_id}}</th>
+        <td>&nbsp;{{recent_transaction.transaction_type}}</td>
+        <td>{{recent_transaction.transaction_date}}</td>
+        <td>{{recent_transaction.amount}}</td>
+        <td>{{recent_transaction.from_account}}</td>
+        <td>{{recent_transaction.to_account}}</td>     
+         </tr>
+         
+         </tbody>
+      </table>
+         
+   </div>
+</div>
+</div>
+
+
+
+

@@ -1,0 +1,70 @@
+<div class="container" style="text-align: center;">
+  <a href="#"><img src="/assets/logo.png" style="width: 200px;"></a>
+</div>
+
+<div class="container" style="text-align: center;">
+      <h1 >Track Your Application Status</h1>
+</div>
+
+<div class="container" style="text-align: center;">
+  <input type="text" [(ngModel)]="Reference_id" placeholder="Enter your Reference ID" style="margin-right: 10px;">
+  <button type="button" class="btn btn-primary" (click)="TrackApplicationDetails()">Track </button>
+</div>
+<div class="container" style="align-content:center" *ngFor="let trackapp of trackapplication">
+              <table class="table">
+                    <tbody>
+                      <tr>
+                            <th>Reference Id:</th>
+                            <td>{{trackapp.Reference_id}} </td> 
+                        </tr>
+                      <tr>
+                            <th>Account Type:</th>
+                            <td>{{trackapp.account_type}} </td> 
+                        </tr>
+                      <tr>
+                            <th>Approved Status:</th>
+                            <td>{{trackapp.approved_status}} </td> 
+                        </tr>
+                      <tr>
+                            <th>Approved Date:</th>
+                            <td>{{trackapp.approved_date}} </td> 
+                        </tr>
+                      </tbody>
+                </table>
+</div>
+
+<!-- <div class="buttonheader">
+
+      <button type="button" class="btn btn-primary" (click)="ShowTrackApplication()">Track </button>
+</div> -->
+
+<!-- <div class="trackbutton" *ngIf="trackapplicationtoggle">
+          <div class="card-body">
+                <h3 class="card-text">
+                      <input type="text" [(ngModel)]="Reference_id" >
+                      &nbsp;
+                      <button type="button" class="btn btn-primary" (click)="TrackApplicationDetails()">Track </button>
+                      </h3>
+             <div class="trackdetails" style="width: 55rem;" *ngFor="let trackapp of trackapplication">
+                  <table class="table">
+                        <tbody>
+                          <tr>
+                                <th scope="row">Reference Id:</th>
+                                <td> {{trackapp.Reference_id}} </td> 
+                            </tr>
+                          <tr>
+                                <th scope="row">Account Type:</th>
+                                <td> {{trackapp.account_type}} </td> 
+                            </tr>
+                          <tr>
+                                <th scope="row">Approved Status:</th>
+                                <td> {{trackapp.approved_status}} </td> 
+                            </tr>
+                          <tr>
+                                <th scope="row">Approved Date:</th>
+                                <td> {{trackapp.approved_date}} </td> 
+                            </tr>
+                          </tbody>
+                    </table>
+              </div>
+  </div> -->

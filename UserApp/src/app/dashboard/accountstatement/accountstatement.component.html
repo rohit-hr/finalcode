@@ -1,0 +1,49 @@
+
+<div class="container" style="align-content: center;" *ngFor="let account of accountsummary">
+  
+  <div class="card-body" style="align-content: center">
+    <h1 class="card-title">Balance {{account.balance}}</h1>
+    <h3 class="card-text">Account Number: {{account.account_number}} </h3> 
+    
+  </div>
+  <mat-divider></mat-divider>
+
+  <div class="account_statement" style="align-content: center">
+    <div class="form-group">
+      <br/>
+      <label>From:</label>
+      <input type="date" [(ngModel)]="start_date">
+      
+      <label>To:</label>
+      <input type="date"  [(ngModel)]="end_date">
+      
+      <br/><br/>
+      <button type="button" class="btn btn-primary" (click)="SeeStatement()">See MiniStatement</button>
+    </div>
+    
+    
+    <div class="seeStatement_toggle">
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Transaction Id</th>
+              <th scope="col">Transaction Type</th>
+              <th scope="col">Transaction Date</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Remarks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let accountstate of accountstatement">
+              <th scope="row">{{accountstate.transaction_id}}</th>
+              <td>{{accountstate.transaction_type}}</td>
+              <td>{{accountstate.transaction_date}}</td>
+              <td>{{accountstate.amount}}</td>
+              <td>{{accountstate.remarks}}</td>
+            </tr>
+          </tbody>
+        </table>      
+    </div>
+  </div>
+
+</div>

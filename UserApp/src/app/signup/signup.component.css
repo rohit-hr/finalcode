@@ -1,0 +1,14 @@
+.is-invalid {
+    border-left: solid 2px red;
+  }
+  
+  .material-icons {
+    display: inline-flex;
+	vertical-align: middle;
+  }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

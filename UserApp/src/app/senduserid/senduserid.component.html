@@ -1,0 +1,30 @@
+<div class="container" style="text-align: center;">
+  <a href="#"><img src="/assets/logo.png" style="width: 200px;"></a>
+</div>
+
+<br>
+<h3 style="text-align: center;">Forgot User ID?</h3>
+<br>
+<div class="container" style="text-align: center;">
+
+  <input type="text" placeholder="Enter your Email" [(ngModel)]="email" style="margin-right: 10px;" required><br>
+  <br>
+  <button type="button" class="btn btn-primary" (click)="senduserid()">Submit</button>
+</div>
+
+<div class="modal" id="myModal" [style.display]="showModel ? 'block' : 'none'">
+  <div class="modal-dialog">
+     <div class="modal-content">  
+       <div class="modal-body" style="background-color: cadetblue;">
+         <div *ngIf="flag">
+            <div class="modal-body">
+               Your User ID has been sent to your registered Email.
+             <div class="modal-footer">
+               <button class="btn btn-primary" (click)="home()">ok</button>
+             </div>
+            </div>
+         </div>
+       </div>
+    </div> 
+  </div>
+</div>

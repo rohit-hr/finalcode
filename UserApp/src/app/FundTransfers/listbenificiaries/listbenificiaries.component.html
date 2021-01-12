@@ -1,0 +1,25 @@
+<div class= "container" style="text-align: right;">
+    <a [routerLink]="['/managebenificiary']">Return to Manage Beneficiaries</a>
+</div>
+<div class="container" style="text-align: center;">
+    <img src="/assets/logo.png">
+</div>
+<section>
+    <div class="custom-centered">
+        <table class="container-fluid">
+            <tr >
+                <td colspan="3"><div class="container p-3 my-3 bg-primary text-white"><h5>Beneficiaries</h5></div></td>
+            </tr>
+            <tr *ngFor="let beneficiary of beneficiaries">
+                    <td>
+                        <tr><td><strong>Beneficiary Account Number</strong></td><td colspan="2">: {{beneficiary.beneficiary_account_number}}</td></tr>
+                        <tr><td><strong>Nick Name</strong></td><td colspan="2">: {{beneficiary.nickname}}</td></tr>
+                        <tr><br></tr>
+                    </td>
+                    <td><button (click)="onDelete(beneficiary.beneficiary_account_number)" class="btn btn-danger">Delete Beneficiary</button></td>
+  
+            </tr>
+            <tr><td colspan="3"><hr></td></tr>
+        </table>
+    </div>
+</section>

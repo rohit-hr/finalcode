@@ -1,0 +1,272 @@
+<html>
+
+<head>
+  <title>Savings Account Account Creation</title>
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<!-- <body style="background-image: url('/assets/key.jpg');background-repeat: no-repeat;background-size: cover; background-attachment: fixed;"> -->
+<body>
+    
+  <div class="container" style="text-align: center;">
+    <a href="#"><img src="/assets/logo.png" width="100px"></a><h2>Account Creation Form</h2>
+  </div>
+  <form #regform="ngForm">
+    <div class="container" style="width: 600px;">
+      <!---------------------- First Name ---------------------->
+      <div class="form-group">
+        <label for="fname">First Name<span class="spancomp">*</span> : </label>
+        <input type="text" name="fname" id="fname" class="form-control" placeholder="Enter First Name" #fnameRef="ngModel" required [(ngModel)]="customer.First_name">
+        <div [hidden]="fnameRef.valid || fnameRef.pristine" class="alert alert-danger">
+            Please enter a First Name
+        </div>
+      </div>
+      <!---------------------- Middle Name ---------------------->
+      <div class="form-group">
+        <label for="mname">Middle Name : </label>
+        <input type="text" name="mname" id="mname" class="form-control" placeholder="Enter Middle Name" #mnameRef="ngModel" [(ngModel)]="customer.middle_name">
+      </div>
+      <!---------------------- Last Name ---------------------->
+      <div class="form-group">
+        <label for="lname">Last Name<span class="spancomp">*</span> : </label>
+        <input type="text" name="lname" id="lname" class="form-control" placeholder="Enter Last Name" #lnameRef="ngModel" required [(ngModel)]="customer.Last_name">
+        <div [hidden]="lnameRef.valid || lnameRef.pristine" class="alert alert-danger">
+            Please enter a Last Name
+        </div>
+      </div>
+        <!---------------------- Father's Name ---------------------->
+      <div class="form-group">
+        <label for="fathername">Father's Name<span class="spancomp">*</span> : </label>
+        <input type="text" name="fathername" id="fathername" class="form-control" placeholder="Enter Father's Name" #fathernameRef="ngModel" required [(ngModel)]="customer.Father_name">
+        <div [hidden]="fathernameRef.valid || fathernameRef.pristine" class="alert alert-danger">
+            Please enter Father's Name
+        </div>
+      </div>
+        <!---------------------- Mobile Number ---------------------->
+      <div class="form-group">
+        <label for="mobileno">Mobile Number<span class="spancomp">*</span> : </label>
+        <input type="number" name="mobileno" id="mobileno" class="form-control" min="10" max="10" pattern ="[1-9]{1}[0-9]{9}" placeholder="Enter Phone Number" #mobileRef="ngModel" required [(ngModel)]="customer.mobile_number">
+        <div *ngIf="mobileRef.errors && (mobileRef.dirty || mobileRef.touched)" class="alert alert-danger">
+            <div [hidden]="!mobileRef.errors.required">
+                Please enter a Mobile Number
+            </div>
+            <div [hidden]="!mobileRef.errors.pattern">
+                Please enter a valid 10 digit Mobile Number
+            </div>
+        </div>
+        <!-- <div [hidden]="mobileRef.valid || mobileRef.pristine" class="alert alert-danger">
+            Please enter a valid Mobile Number
+        </div> -->
+      </div>
+        <!---------------------- Email ID ---------------------->
+      <div class="form-group">
+        <label for="email">Email ID<span class="spancomp">*</span> : </label>
+        <input type="email" name="email" id="email" class="form-control" placeholder="someone@xyz.com" pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #emailRef="ngModel" required [(ngModel)]="customer.email_id">
+        <div *ngIf="emailRef.errors && (emailRef.dirty || emailRef.touched)" class="alert alert-danger">
+            <div [hidden]="!emailRef.errors.required">
+                Please enter a Email ID
+            </div>
+            <div [hidden]="!emailRef.errors.pattern">
+                Please enter a valid 10 Email ID
+            </div>
+        </div>
+        <!-- <div [hidden]="emailRef.valid || emailRef.pristine" class="alert alert-danger">
+            Please enter a valid Email ID
+        </div> -->
+      </div>
+        <!---------------------- Account Type ---------------------->
+      <div class="form-group">
+        <label for="acctype" style="margin-right: 20px;"> Account Type<span class="spancomp">*</span> : </label>
+        <select name="acctype" id="acctype" style="width: 200px;" [(ngModel)]="customer.account_type" required>
+          <option value="savings">Savings</option>
+          <option value="current">Current</option>
+        </select>
+      </div>
+        <!---------------------- Aadhar Number ---------------------->
+      <div class="form-group">
+        <label for="aadhar">Aadhar Card Number<span class="spancomp">*</span> : </label>
+        <input type="number" name="aadhar" id="aadhar" class="form-control" maxlength="12" pattern ="[0-9]{12}" placeholder="Enter Aadhar Number" #aadharRef="ngModel" required [(ngModel)]="customer.aadhar_number">
+        <div *ngIf="aadharRef.errors && (aadharRef.dirty || aadharRef.touched)" class="alert alert-danger">
+            <div [hidden]="!aadharRef.errors.required">
+                Please enter your Aadhar Number
+            </div>
+            <div [hidden]="!aadharRef.errors.pattern">
+                Please enter a valid 12 digit Aadhar Number
+            </div>
+        </div>
+        <!-- <div [hidden]="aadharRef.valid || aadharRef.pristine" class="alert alert-danger">
+            Please enter a valid Aadhar Number
+        </div> -->
+      </div>
+        <!---------------------- Date of Birth ---------------------->
+      <div class="form-group">
+        <label for="dob">Date of Birth<span class="spancomp">*</span> : </label>
+        <input type="date" name="dob" id="dob" class="form-control" #dobRef="ngModel" required [(ngModel)]="customer.date_of_birth" max="2021-01-13">
+        <div [hidden]="dobRef.valid || dobRef.pristine" class="alert alert-danger">
+            Please enter your Date of Birth
+        </div>
+      </div>
+        <!---------------------- Age ---------------------->
+        <!-- oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$0');" -->
+      <div class="form-group">
+        <label for="age">Age<span class="spancomp">*</span> : </label>
+        <input type="number" name="age" id="age" class="form-control" placeholder="Enter Age" pattern="^[1-9][0-9]*$"
+         maxlength="2" #ageRef="ngModel" required [(ngModel)]="customer.age">
+        <div *ngIf="ageRef.errors && (ageRef.dirty || ageRef.touched)" class="alert alert-danger">
+            <div [hidden]="!ageRef.errors.required">
+                Please enter your Age
+            </div>
+            <div [hidden]="!ageRef.errors.pattern">
+                Please enter a valid Age
+            </div>
+        </div>
+        <!-- <div [hidden]="ageRef.valid || ageRef.pristine" class="alert alert-danger">
+            Please enter a valid Age
+        </div> -->
+      </div>
+        <!---------------------- Gender ---------------------->
+      <div class="form-group">
+        <label for="gender" style="margin-right: 20px;"> Gender<span class="spancomp">*</span> : </label>
+        <select name="gender" id="gender" [(ngModel)]="customer.gender" required>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="pnts">Prefer not to Say</option>
+        </select>
+      </div>
+        <!---------------------- Residential Address ---------------------->
+      <div class="form-group">
+        Residential Address<span class="spancomp">*</span> :
+      </div>
+      <div class="form-group">
+        <textarea name="txtraddline1" id="txtraddline1" class="form-control" placeholder="Enter Residential Address" #raddline1Ref="ngModel" required [(ngModel)]="customer.Residential_address"></textarea>
+        <div [hidden]="raddline1Ref.valid || raddline1Ref.pristine" class="alert alert-danger">
+            Enter your Residential Address
+        </div>
+        <!-- <input type="text" name="txtraddline2" id="txtraddline2" class="form-control" placeholder="Address Line 2" #raddline2Ref="ngModel" required ngModel>
+        <div [hidden]="raddline2Ref.valid || raddline2Ref.pristine" class="alert alert-danger">
+            Enter valid Address
+        </div>
+        <input type="text" name="txtraddlandmark" id="txtraddlandmark" class="form-control" placeholder="Landmark" #rlandRef="ngModel" required ngModel>
+        <div [hidden]="rlandRef.valid || rlandRef.pristine" class="alert alert-danger">
+            Enter a Landmark
+        </div>
+        <input type="text" name="txtraddstate" id="txtraddstate" class="form-control" placeholder="State" #rstateRef="ngModel" required ngModel>
+        <div [hidden]="rstateRef.valid || rstateRef.pristine" class="alert alert-danger">
+            Enter the State
+        </div>
+        <input type="text" name="txtraddcity" id="txtraddcity" class="form-control" placeholder="City" #rcityRef="ngModel" required ngModel>
+        <div [hidden]="rcityRef.valid || rcityRef.pristine" class="alert alert-danger">
+            Enter the City
+        </div>
+        <input type="number" name="txtrpincode" id="txtrpincode" class="form-control" placeholder="Pincode" #rpinRef="ngModel" required ngModel>
+        <div [hidden]="rpinRef.valid || rpinRef.pristine" class="alert alert-danger">
+            Enter the Pincode
+        </div> -->
+      </div>
+      <!---------------------- Address same checkbox ---------------------->
+      <!-- <div class="form-group">
+        <input type="checkbox" name="psameasr" id="psameasr" onchange="CopyAdd()"/> Permanent Address same as Residential Address 
+      </div> -->
+      <!---------------------- Permanent Address ---------------------->
+      <div class="form-group">
+        Permanent Address<span class="spancomp">*</span> :
+      </div>
+      <div class="form-group">
+        <textarea name="txtpaddline1" id="txtpaddline1" class="form-control" required placeholder="Enter Permanent Address" #paddline1Ref="ngModel" [(ngModel)]="customer.permanent_address"></textarea>
+        <div [hidden]="paddline1Ref.valid || paddline1Ref.pristine" class="alert alert-danger">
+            Enter your Permanent Address
+        </div>
+
+        <!-- <input type="text" name="txtpaddline2" id="txtpaddline2" class="form-control" placeholder="Address Line 2" #paddline2Ref="ngModel" required ngModel>
+        <div [hidden]="paddline2Ref.valid || paddline2Ref.pristine" class="alert alert-danger">
+            Enter valid Address
+        </div>
+        <input type="text" name="txtpaddlandmark" id="txtpaddlandmark" class="form-control" placeholder="Landmark" #plandRef="ngModel" required ngModel>
+        <div [hidden]="plandRef.valid || plandRef.pristine" class="alert alert-danger">
+            Enter a Landmark
+        </div>
+        <input type="text" name="txtpaddstate" id="txtpaddstate" class="form-control" placeholder="State" #pstateRef="ngModel" required ngModel>
+        <div [hidden]="pstateRef.valid || pstateRef.pristine" class="alert alert-danger">
+            Enter the State
+        </div>
+        <input type="text" name="txtpaddcity" id="txtpaddcity" class="form-control" placeholder="City" #pcityRef="ngModel" required ngModel>
+        <div [hidden]="pcityRef.valid || pcityRef.pristine" class="alert alert-danger">
+            Enter the City
+        </div>
+        <input type="number" name="txtppincode" id="txtppincode" class="form-control" placeholder="Pincode" #ppinRef="ngModel" required ngModel>
+        <div [hidden]="ppinRef.valid || ppinRef.pristine" class="alert alert-danger">
+            Enter the Pincode
+        </div> -->
+      </div>
+      <!---------------------- Occupation ---------------------->
+      <div class="form-group">
+        <label for="occtype">Occupation Type<span class="spancomp">*</span> : </label>
+        <input type="text" name="occtype" id="occtype" class="form-control" placeholder="Enter Occupation Type" #occtypeRef="ngModel" required [(ngModel)]="customer.occupation_Type">
+        <div [hidden]="occtypeRef.valid || occtypeRef.pristine" class="alert alert-danger">
+            Please enter your Occupation Details
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="sourceofincome">Source of Income<span class="spancomp">*</span> : </label>
+        <input type="text" name="sourceofincome" id="sourceofincome" class="form-control" placeholder="Enter Source of Income" #incomeRef="ngModel" required [(ngModel)]="customer.source_of_income">
+        <div [hidden]="incomeRef.valid || incomeRef.pristine" class="alert alert-danger">
+            Please enter your Source of Income
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="grossincome">Gross Income<span class="spancomp">*</span> : </label>
+        <input type="number" name="grossincome" id="grossincome" class="form-control" placeholder="Enter Gross Income" #gincomeRef="ngModel" required [(ngModel)]="customer.gross_income">
+        <div [hidden]="gincomeRef.valid || gincomeRef.pristine" class="alert alert-danger">
+            Please enter your Gross Income
+        </div>
+      </div>
+      <div *ngIf="msg" style="font-size: larger; color: red; text-align: center;" class="form-group">
+        {{msg}}
+      </div>
+      <!---------------------- Submit Button ---------------------->
+      <div class="form-group" style="text-align: center;">
+        <button [disabled]="regform.invalid" type="submit" class="btn btn-primary btn-block font-weight-bold" (click)="InsertCustomer()">Submit</button>
+      </div>
+    </div>
+  </form>
+  <div class="modal" id="myModal" [style.display]="showModel ? 'block' : 'none'">
+
+    <div class="modal-dialog">
+
+       <div class="modal-content">  
+
+         <div class="modal-body" style="background-color: grey;">
+
+           <div *ngIf="flag">
+
+              <div class="modal-body">
+
+                 Your form is successfully submitted. Please check your email for reference number.
+
+               <div class="modal-footer">
+
+                 <button class="btn btn-primary" (click)="home()">Close</button>
+
+               </div>
+
+              </div>
+
+           </div>
+
+         </div>
+
+      </div> 
+
+    </div>
+
+</div>  
+  <br><br>
+  <hr/>
+  <footer>
+      <div style="text-align: center; overflow: hidden;">
+        Copyright© 2020 . All rights Reserved.
+      </div>
+  </footer>
+</body>
+</html>

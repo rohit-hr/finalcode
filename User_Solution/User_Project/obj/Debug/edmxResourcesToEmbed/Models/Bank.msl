@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbBankModelStoreContainer" CdmEntityContainer="dbBankEntities1">
+    <EntitySetMapping Name="tbladmins">
+      <EntityTypeMapping TypeName="dbBankModel.tbladmin">
+        <MappingFragment StoreEntitySet="tbladmin">
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBalances">
+      <EntityTypeMapping TypeName="dbBankModel.tblBalance">
+        <MappingFragment StoreEntitySet="tblBalance">
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="account_number" ColumnName="account_number" />
+          <ScalarProperty Name="account_type" ColumnName="account_type" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBankingCustomers">
+      <EntityTypeMapping TypeName="dbBankModel.tblBankingCustomer">
+        <MappingFragment StoreEntitySet="tblBankingCustomers">
+          <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="account_number" ColumnName="account_number" />
+          <ScalarProperty Name="account_OpenDate" ColumnName="account_OpenDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBeneficiaries">
+      <EntityTypeMapping TypeName="dbBankModel.tblBeneficiary">
+        <MappingFragment StoreEntitySet="tblBeneficiaries">
+          <ScalarProperty Name="beneficiary_id" ColumnName="beneficiary_id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="account_number" ColumnName="account_number" />
+          <ScalarProperty Name="beneficiary_account_number" ColumnName="beneficiary_account_number" />
+          <ScalarProperty Name="nickname" ColumnName="nickname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCustomers">
+      <EntityTypeMapping TypeName="dbBankModel.tblCustomer">
+        <MappingFragment StoreEntitySet="tblCustomers">
+          <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="Father_name" ColumnName="Father_name" />
+          <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="account_type" ColumnName="account_type" />
+          <ScalarProperty Name="aadhar_number" ColumnName="aadhar_number" />
+          <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="Residential_address" ColumnName="Residential_address" />
+          <ScalarProperty Name="permanent_address" ColumnName="permanent_address" />
+          <ScalarProperty Name="occupation_Type" ColumnName="occupation_Type" />
+          <ScalarProperty Name="source_of_income" ColumnName="source_of_income" />
+          <ScalarProperty Name="gross_income" ColumnName="gross_income" />
+          <ScalarProperty Name="account_OpenDate" ColumnName="account_OpenDate" />
+          <ScalarProperty Name="approved_status" ColumnName="approved_status" />
+          <ScalarProperty Name="approved_by" ColumnName="approved_by" />
+          <ScalarProperty Name="approved_date" ColumnName="approved_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblLockeds">
+      <EntityTypeMapping TypeName="dbBankModel.tblLocked">
+        <MappingFragment StoreEntitySet="tblLocked">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="account_number" ColumnName="account_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblNetBankings">
+      <EntityTypeMapping TypeName="dbBankModel.tblNetBanking">
+        <MappingFragment StoreEntitySet="tblNetBanking">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="account_number" ColumnName="account_number" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="transaction_password" ColumnName="transaction_password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTransactions">
+      <EntityTypeMapping TypeName="dbBankModel.tblTransaction">
+        <MappingFragment StoreEntitySet="tblTransactions">
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+          <ScalarProperty Name="from_account" ColumnName="from_account" />
+          <ScalarProperty Name="to_account" ColumnName="to_account" />
+          <ScalarProperty Name="from_Account_balance" ColumnName="from_Account_balance" />
+          <ScalarProperty Name="to_Account_balance" ColumnName="to_Account_balance" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="get_ReferenceId" FunctionName="dbBankModel.Store.get_ReferenceId" />
+    <FunctionImportMapping FunctionImportName="Mini_Statement1" FunctionName="dbBankModel.Store.Mini_Statement1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.Mini_Statement1_Result">
+          <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+          <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+          <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="from_Account_balance" ColumnName="from_Account_balance" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_accountsummary" FunctionName="dbBankModel.Store.proc_accountsummary">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_accountsummary_Result">
+          <ScalarProperty Name="account_number" ColumnName="account_number" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_CheckCust" FunctionName="dbBankModel.Store.proc_CheckCust" />
+    <FunctionImportMapping FunctionImportName="proc_test" FunctionName="dbBankModel.Store.proc_test" />
+    <FunctionImportMapping FunctionImportName="proc_test2" FunctionName="dbBankModel.Store.proc_test2" />
+    <FunctionImportMapping FunctionImportName="proc_test3" FunctionName="dbBankModel.Store.proc_test3" />
+    <FunctionImportMapping FunctionImportName="proc_ValidCust" FunctionName="dbBankModel.Store.proc_ValidCust" />
+    <FunctionImportMapping FunctionImportName="proc_ValidReg" FunctionName="dbBankModel.Store.proc_ValidReg" />
+    <FunctionImportMapping FunctionImportName="procedure_GetUserProfilesForCustomers" FunctionName="dbBankModel.Store.procedure_GetUserProfilesForCustomers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.procedure_GetUserProfilesForCustomers_Result">
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="aadhar_number" ColumnName="aadhar_number" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+          <ScalarProperty Name="Residential_address" ColumnName="Residential_address" />
+          <ScalarProperty Name="permanent_address" ColumnName="permanent_address" />
+          <ScalarProperty Name="occupation_Type" ColumnName="occupation_Type" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Recent_Transactions" FunctionName="dbBankModel.Store.Recent_Transactions">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.Recent_Transactions_Result">
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+          <ScalarProperty Name="from_account" ColumnName="from_account" />
+          <ScalarProperty Name="to_account" ColumnName="to_account" />
+          <ScalarProperty Name="from_Account_balance" ColumnName="from_Account_balance" />
+          <ScalarProperty Name="to_Account_balance" ColumnName="to_Account_balance" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_DisplayTransaction" FunctionName="dbBankModel.Store.sp_DisplayTransaction">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.sp_DisplayTransaction_Result">
+          <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+          <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+          <ScalarProperty Name="to_account" ColumnName="to_account" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="from_account" ColumnName="from_account" />
+          <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_LoginCheck" FunctionName="dbBankModel.Store.sp_LoginCheck">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.sp_LoginCheck_Result">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SelectTransactionId" FunctionName="dbBankModel.Store.sp_SelectTransactionId" />
+    <FunctionImportMapping FunctionImportName="sp_transact" FunctionName="dbBankModel.Store.sp_transact" />
+    <FunctionImportMapping FunctionImportName="proc_ValidCust1" FunctionName="dbBankModel.Store.proc_ValidCust">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_ValidCust1_Result">
+          <ScalarProperty Name="aadhar_number" ColumnName="aadhar_number" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_test1" FunctionName="dbBankModel.Store.proc_test">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_test1_Result">
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_test21" FunctionName="dbBankModel.Store.proc_test2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_test21_Result">
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_test31" FunctionName="dbBankModel.Store.proc_test3">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_test31_Result">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="trackApplication" FunctionName="dbBankModel.Store.trackApplication">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.trackApplication_Result">
+          <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+          <ScalarProperty Name="account_type" ColumnName="account_type" />
+          <ScalarProperty Name="approved_status" ColumnName="approved_status" />
+          <ScalarProperty Name="approved_date" ColumnName="approved_date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_checkOldPassword" FunctionName="dbBankModel.Store.sp_checkOldPassword" />
+    <FunctionImportMapping FunctionImportName="sp_checkOldTransactionPassword" FunctionName="dbBankModel.Store.sp_checkOldTransactionPassword" />
+    <FunctionImportMapping FunctionImportName="sp_updateLoginPassword" FunctionName="dbBankModel.Store.sp_updateLoginPassword" />
+    <FunctionImportMapping FunctionImportName="sp_updateTransactionPassword" FunctionName="dbBankModel.Store.sp_updateTransactionPassword" />
+    <FunctionImportMapping FunctionImportName="proc_sendemail" FunctionName="dbBankModel.Store.proc_sendemail" />
+    <FunctionImportMapping FunctionImportName="proc_sendemail1" FunctionName="dbBankModel.Store.proc_sendemail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_sendemail1_Result">
+          <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="tblUserotps">
+      <EntityTypeMapping TypeName="dbBankModel.tblUserotp">
+        <MappingFragment StoreEntitySet="tblUserotp">
+          <ScalarProperty Name="otp" ColumnName="otp" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="proc_InsertintotblwithEmail" FunctionName="dbBankModel.Store.proc_InsertintotblwithEmail" />
+    <FunctionImportMapping FunctionImportName="proc_OtpCheck2" FunctionName="dbBankModel.Store.proc_OtpCheck2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_OtpCheck2_Result">
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="otp" ColumnName="otp" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_resetpssd" FunctionName="dbBankModel.Store.proc_resetpssd" />
+    <FunctionImportMapping FunctionImportName="proc_uptable" FunctionName="dbBankModel.Store.proc_uptable">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_uptable_Result">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_uptable1" FunctionName="dbBankModel.Store.proc_uptable">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_uptable1_Result">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_updatepassword" FunctionName="dbBankModel.Store.proc_updatepassword" />
+    <FunctionImportMapping FunctionImportName="proc_senduserid" FunctionName="dbBankModel.Store.proc_senduserid" />
+    <FunctionImportMapping FunctionImportName="proc_senduserid1" FunctionName="dbBankModel.Store.proc_senduserid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_senduserid1_Result1">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_Mini_Statement1" FunctionName="dbBankModel.Store.proc_Mini_Statement1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_Mini_Statement1_Result">
+          <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+          <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+          <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="from_Account_balance" ColumnName="from_Account_balance" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_Recent_Transactions" FunctionName="dbBankModel.Store.proc_Recent_Transactions">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_Recent_Transactions_Result">
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+          <ScalarProperty Name="from_account" ColumnName="from_account" />
+          <ScalarProperty Name="to_account" ColumnName="to_account" />
+          <ScalarProperty Name="from_Account_balance" ColumnName="from_Account_balance" />
+          <ScalarProperty Name="to_Account_balance" ColumnName="to_Account_balance" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="tblAdminOtps">
+      <EntityTypeMapping TypeName="dbBankModel.tblAdminOtp">
+        <MappingFragment StoreEntitySet="tblAdminOtp">
+          <ScalarProperty Name="opt" ColumnName="opt" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="proc_InsertintotblwithEmailadmin" FunctionName="dbBankModel.Store.proc_InsertintotblwithEmailadmin" />
+    <FunctionImportMapping FunctionImportName="proc_OtpCheckadmin" FunctionName="dbBankModel.Store.proc_OtpCheckadmin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_OtpCheckadmin_Result">
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="opt" ColumnName="opt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetPendingApplications" FunctionName="dbBankModel.Store.proc_GetPendingApplications">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_GetPendingApplications_Result">
+          <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="aadhar_number" ColumnName="aadhar_number" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_RejectedApplications" FunctionName="dbBankModel.Store.proc_RejectedApplications">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_RejectedApplications_Result">
+          <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="aadhar_number" ColumnName="aadhar_number" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetApprovedCustomers" FunctionName="dbBankModel.Store.proc_GetApprovedCustomers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_GetApprovedCustomers_Result">
+          <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="aadhar_number" ColumnName="aadhar_number" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_InsertApprvCustomersinBankingTble" FunctionName="dbBankModel.Store.proc_InsertApprvCustomersinBankingTble" />
+    <FunctionImportMapping FunctionImportName="proc_GetCustomersProfilesbyReferenceid" FunctionName="dbBankModel.Store.proc_GetCustomersProfilesbyReferenceid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_GetCustomersProfilesbyReferenceid_Result">
+          <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="Father_name" ColumnName="Father_name" />
+          <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="account_type" ColumnName="account_type" />
+          <ScalarProperty Name="aadhar_number" ColumnName="aadhar_number" />
+          <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="Residential_address" ColumnName="Residential_address" />
+          <ScalarProperty Name="permanent_address" ColumnName="permanent_address" />
+          <ScalarProperty Name="occupation_Type" ColumnName="occupation_Type" />
+          <ScalarProperty Name="source_of_income" ColumnName="source_of_income" />
+          <ScalarProperty Name="gross_income" ColumnName="gross_income" />
+          <ScalarProperty Name="account_OpenDate" ColumnName="account_OpenDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetheCustomerApplications" FunctionName="dbBankModel.Store.proc_GetheCustomerApplications">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_GetheCustomerApplications_Result">
+          <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_LoginCheck" FunctionName="dbBankModel.Store.proc_LoginCheck">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_LoginCheck_Result">
+          <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetdetailsForMail" FunctionName="dbBankModel.Store.proc_GetdetailsForMail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankModel.proc_GetdetailsForMail_Result">
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="account_number" ColumnName="account_number" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getEmailId" FunctionName="dbBankModel.Store.sp_getEmailId" />
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,92 @@
+<div class= "container" style="text-align: right;">
+  <a [routerLink]="['/managebenificiary']">Return to Manage Beneficiaries</a>
+</div>
+<div class="container" style="text-align: center;">
+  <img src="/assets/logo.png">
+</div>
+<section>
+  <div class="custom-centered">
+    <div class="container p-3 my-3 bg-primary text-white">
+      <h5>Add New Beneficiary</h5>
+    </div><br>
+
+    <form [formGroup]="addBeneficiaryForm" (ngSubmit)="saveBeneficiary()" class="form-group">
+      <table class="container-fluid">
+        <tr>
+          <td><label>Beneficiary Name</label></td>
+          <td> <input class="form-control transparent-input" type="text" formControlName="beneficiaryName" />
+            <div *ngIf="submitted && f.beneficiaryName.errors">
+              <div *ngIf="f.beneficiaryName.errors.required" class="alert alert-danger">
+                <mat-icon>error_outline</mat-icon><span style="vertical-align: top;"> Beneficiary Name field is
+                  required</span>
+              </div>
+              <div *ngIf="f.beneficiaryName.errors.pattern" class="alert alert-danger">
+                <mat-icon>error_outline</mat-icon><span style="vertical-align: top;"> Please enter a valid Beneficiary
+                  Name</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td> <label>Beneficiary Account Number</label></td>
+          <td>
+            <input class="form-control transparent-input" type="text" formControlName="acntNo" />
+            <div *ngIf="submitted && f.acntNo.errors">
+              <div *ngIf="f.acntNo.errors.required" class="alert alert-danger">
+                <mat-icon>error_outline</mat-icon><span style="vertical-align: top;">Beneficiary Account Number field is
+                  required</span>
+              </div>
+              <div *ngIf="f.acntNo.errors.pattern" class="alert alert-danger">
+                <mat-icon>error_outline</mat-icon><span style="vertical-align: top;">Please enter a valid Beneficiary
+                  Account Number</span>
+              </div>
+            </div>
+            <div *ngIf="submitted && hasError" class="alert alert-danger">
+              <mat-icon>error_outline</mat-icon><span style="vertical-align: top;">{{message}}</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td> <label>Re-Enter Account Number</label></td>
+          <td>
+            <input class="form-control transparent-input" type="text" formControlName="reacntNo" />
+            <div *ngIf="submitted && f.reacntNo.errors">
+              <div *ngIf="f.reacntNo.errors.required" class="alert alert-danger">
+                <mat-icon>error_outline</mat-icon><span style="vertical-align: top;">Please Re-Enter Beneficiary Account
+                  Number</span>
+              </div>
+            </div>
+            <div *ngIf="submitted && notMatched" class="alert alert-danger">
+              <mat-icon>error_outline</mat-icon><span style="vertical-align: top;">Account Number not matched</span>
+            </div>
+          </td>
+        </tr>
+        <!-- <tr>
+          <td class="checkbox">
+            <input type="checkbox" formControlName="saveBeneficiary" id="saveBeneficiary" />&nbsp; &nbsp;
+            <label>Save Beneficiary</label>
+          </td>
+        </tr> -->
+        <tr>
+          <td><label>Nick Name</label></td>
+          <td> <input class="form-control transparent-input" type="text" formControlName="nickName" />
+            <div *ngIf="submitted && f.nickName.errors">
+              <div *ngIf="f.nickName.errors.pattern" class="alert alert-danger">
+                <mat-icon>error_outline</mat-icon> <span style="vertical-align: top;">Nick Name can have only
+                  alphabets</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="text-center">
+              <button class="btn btn-primary" [disabled]="submitted && !addBeneficiaryForm.valid">Save As
+                Beneficiary</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</section>

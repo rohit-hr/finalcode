@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2da325e141a54912b509371fcde64c81" Name="Diagram1">
+        <EntityTypeShape EntityType="dbBankModel.tbladmin" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankModel.tblBalance" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankModel.tblBankingCustomer" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankModel.tblBeneficiary" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankModel.tblCustomer" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankModel.tblLocked" Width="1.5" PointX="7.5" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankModel.tblNetBanking" Width="1.5" PointX="7.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankModel.tblTransaction" Width="1.5" PointX="7.5" PointY="12.5" IsExpanded="true" />
+        <AssociationConnector Association="dbBankModel.FK__tblCustom__appro__145C0A3F" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankModel.FK__tblBalanc__custo__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankModel.FK__tblBankin__Refer__182C9B23" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankModel.FK__tblBenefi__custo__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankModel.FK__tblLocked__user___2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankModel.FK__tblNetBan__user___1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankModel.FK__tblTransa__custo__20C1E124" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dbBankModel.tblUserotp" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbBankModel.tblAdminOtp" Width="1.5" PointX="3.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

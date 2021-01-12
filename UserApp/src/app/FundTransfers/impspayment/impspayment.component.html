@@ -1,0 +1,106 @@
+<div class= "container" style="text-align: right;">
+  <a [routerLink]="['/fundstransfer']">Return to Funds Transfer</a>
+</div>
+<div class="container" style="text-align: center;">
+  <img src="/assets/logo.png">
+</div>
+<section>
+  <div class="container" class="custom-centered">
+    <div class="container p-3 my-3 bg-primary text-white">
+      <h5>Initiate IMPS Payment</h5>
+    </div><br>
+
+
+    <form [formGroup]="impsPaymentForm" (ngSubmit)="initiatePayment()" class="form-group">
+      <table class="container-fluid">
+        <tr>
+          <td><label>From Account</label></td>
+          <td> <select class="custom-select" class="form-control transparent-input" formControlName="fromAccount" >
+            <option [value]="fromAccount">{{fromAccount}}</option>
+          </select>
+            <div *ngIf="submitted && f.fromAccount.errors">
+              <div *ngIf="f.fromAccount.errors.required" class="alert alert-danger">
+                <mat-icon>error_outline</mat-icon><span style="vertical-align: top;">From Account field is
+                  required</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><label>To Account</label></td>
+          <td> <select class="custom-select" class="form-control transparent-input" type="text" formControlName="toAccount" >
+            <option *ngFor="let beneficiary of beneficiaries" [value]="beneficiary.beneficiary_account_number">{{beneficiary.beneficiary_account_number}}</option>
+          </select>
+            <div *ngIf="submitted && f.toAccount.errors">
+              <div *ngIf="f.toAccount.errors.required" class="alert alert-danger">
+                <mat-icon>error_outline</mat-icon><span style="vertical-align: top;">To Account field is required</span>
+              </div>
+            </div>
+            <div *ngIf="submitted && notAdded" class="alert alert-danger">
+              <mat-icon>error_outline</mat-icon><span style="vertical-align: top;">{{message}}</span>
+            </div>
+          </td>
+          <td><a [routerLink]="['/addbenificiary']"><button class="btn btn-primary">Add New+</button></a></td>
+        </tr>
+        <tr>
+          <td> <label>Amount</label></td>
+          <td>
+            <input class="form-control transparent-input" type="number" formControlName="amount" />
+            <div *ngIf="submitted && f.amount.errors">
+              <div *ngIf="f.amount.errors.required" class="alert alert-danger">
+                <mat-icon>error_outline</mat-icon><span style="vertical-align: top;">Please Enter the Amount</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <!-- <tr>
+          <td> <label>Transaction Date</label></td>
+          <td>
+            <input class="form-control transparent-input" type="date" formControlName="transDate" />
+            <div *ngIf="submitted && f.transDate.errors">
+              <div *ngIf="f.transDate.errors.required" class="alert alert-danger">
+                <mat-icon>error_outline</mat-icon><span style="vertical-align: top;">Please Select Transaction
+                  Date</span>
+              </div>
+            </div>
+          </td>
+        </tr> -->
+        <tr>
+          <td><label>Remark</label></td>
+          <td> <input class="form-control transparent-input" type="text" formControlName="remark" />
+            <div *ngIf="submitted && f.remark.errors">
+              <div *ngIf="f.remark.errors.required" class="alert alert-danger">
+                <mat-icon>error_outline</mat-icon><span style="vertical-align: top;">Remark field is required</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="submitted">
+          <td><label>Transaction Password</label></td>
+          <td> <input class="form-control transparent-input" type="password" formControlName="password" />
+            <div *ngIf="submitted && f.password.errors">
+              <div *ngIf="f.password.errors.required" class="alert alert-danger">
+                <mat-icon>error_outline</mat-icon><span style="vertical-align: top;">Enter Transaction Password</span>
+              </div>
+            </div>
+            <div *ngIf="submitted && notMatched" class="alert alert-danger">
+              <mat-icon>error_outline</mat-icon><span style="vertical-align: top;">Incorrect Password</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>
+              <button class="btn btn-warning" type="reset" (click)="onReset()">Reset</button>
+            </div>
+          </td>
+          <td>
+            <div>
+              <button class="btn btn-primary" [disabled]="submitted && !impsPaymentForm.valid" data-toggle="modal" data-target="#myModal">Continue</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</section>

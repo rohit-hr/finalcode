@@ -1,0 +1,46 @@
+<div class="container" style="text-align: center;">
+    <img src="/assets/logo.png">
+  </div>
+  <section>
+    <div class="container" class="custom-centered">
+        <div class="container p-2 my-4 bg-dark text-white">
+            <h2>Transfer Successful</h2>
+        </div>
+        <table class="container-fluid">
+            
+            <tr>
+                <td><strong>Reference ID</strong></td>
+                <td>{{transaction.transaction_id}}</td>
+            </tr>
+            <tr>
+                <td><strong>Mode</strong></td>
+                <td>{{transaction.transaction_type}}</td>
+            </tr>
+            <tr>
+                <td><strong>Paid To Account</strong></td>
+                <td>xxxxxx{{transaction.to_account}}</td>
+            </tr>
+            <tr>
+                <td><strong>Amount</strong></td>
+                <td>{{transaction.amount}}</td>
+            </tr>
+            <tr>
+                <td><strong>From Account</strong></td>
+                <td>xxxxxx{{transaction.from_account}}</td>
+            </tr>
+            <tr>
+                <td><strong>On</strong></td>
+                <td>{{transaction.transaction_date|date}}</td>
+            </tr>
+            <tr>
+                <td><strong>Remarks</strong></td>
+                <td>{{transaction.remarks}}</td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td colspan="2" style="text-align: center;"><button class="btn btn-secondary" (click)="onClose()">Close</button></td>
+            </tr>
+        </table>
+    </div>
+    
+</section>

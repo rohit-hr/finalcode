@@ -1,0 +1,64 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <div class="container" style="text-align: center;">
+        <a href="#"><img src="/assets/logo.png"></a>
+    </div>
+
+    <div class="loginpage" style="background-attachment: fixed">
+        <div class="form-group">
+            <h3 style="text-align: center;">Internet Banking Login</h3>
+            <br>
+            <div class="form-group" [class.has-error]="user_id.touched && user_id.invalid">
+                <label for="user">UserID</label><br>
+                <input type="text" id="user" [(ngModel)]="userLogin.user_id" class="form-control" required
+                    #user_id="ngModel" name="user" />
+                <span class="help-block" *ngIf="user_id.touched && user_id.errors?.required">
+                    User ID is required
+                </span>
+            </div>
+            <br>
+            <div class="form-group" [class.has-error]="password.touched && password.invalid">
+                <label for="pwd">Password</label><br>
+                <input type="password" id="pwd" [(ngModel)]="userLogin.password" class="form-control" required
+                    #password="ngModel" />
+
+                <span class="help-block" *ngIf="password.touched && password.errors?.required">
+                    Password is required
+                </span>
+            </div>
+            <br>
+            <div *ngIf="msg" style="font-size: larger; color: red; text-align: center;">
+                {{msg}}
+            </div>
+            <div class="form-group" style="text-align: center;">
+                <button (click)="onLogin()" class="btn btn-success">Login</button>
+            </div>
+            <div class="form-group" style="text-align: center;">
+                <a routerLink="/forgot">Forgot Password?</a>
+            </div>
+            <div class="form-group" style="text-align: center;">
+                <a routerLink="/forgotuserid">Forgot User ID?</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="padding-top: 50px;">
+        <h4>Important Notices</h4>
+        1) As per RBI guidelines, Real-Time Gross Settlement (RTGS) is available 24x7 with effect from Dec 14, 2020.<br>
+        2) As per RBI guidelines, National Electronic Funds Transfer (NEFT) is available 24x7 with effect from Dec 16, 2019.
+    </div>
+    <br><br>
+    <hr>
+    <footer>
+        <div style="text-align: center; padding-bottom: 20px;">
+            Copyright© 2020 . All rights Reserved.
+        </div>
+    </footer>
+</body>
+
+</html>
+

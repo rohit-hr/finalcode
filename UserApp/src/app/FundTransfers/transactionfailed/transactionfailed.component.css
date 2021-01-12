@@ -1,0 +1,18 @@
+.custom-centered{
+    margin:0 auto;
+    width:300px;
+   }
+section{
+    background-size: cover;
+    background-attachment:fixed;
+    height: 100%;
+    padding:50px 0;
+   }
+   strong{
+       color: darkslategrey;
+       font-size: large;
+   }
+   .mat-icon {
+    transform: scale(3);
+    color:red;
+ }

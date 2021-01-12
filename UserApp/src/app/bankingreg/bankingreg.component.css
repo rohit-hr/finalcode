@@ -1,0 +1,32 @@
+.spancomp{
+    color: red;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input.ng-invalid
+{
+    border: 1px solid red;
+}
+
+/* input.ng-valid
+{
+    border: 1px solid green;
+} */
+
+textarea
+{
+    resize: none;
+}
+textarea.ng-invalid
+{
+    border: 1px solid red;
+}
+/* textarea.ng-valid
+{
+    border: 1px solid green;
+} */

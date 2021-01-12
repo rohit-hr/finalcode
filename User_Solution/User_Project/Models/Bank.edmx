@@ -1,0 +1,1402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbBankModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbladmin">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="admin_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="email_id" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="tblAdminOtp">
+          <Key>
+            <PropertyRef Name="opt" />
+          </Key>
+          <Property Name="email_id" Type="varchar" MaxLength="40" />
+          <Property Name="opt" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBalance">
+          <Key>
+            <PropertyRef Name="account_number" />
+          </Key>
+          <Property Name="customer_id" Type="int" />
+          <Property Name="account_number" Type="int" Nullable="false" />
+          <Property Name="account_type" Type="varchar" MaxLength="20" />
+          <Property Name="Name" Type="varchar" MaxLength="40" />
+          <Property Name="balance" Type="float" />
+        </EntityType>
+        <EntityType Name="tblBankingCustomers">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="Reference_id" Type="int" />
+          <Property Name="customer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="account_number" Type="int" Nullable="false" />
+          <Property Name="account_OpenDate" Type="date" />
+        </EntityType>
+        <EntityType Name="tblBeneficiaries">
+          <Key>
+            <PropertyRef Name="beneficiary_id" />
+          </Key>
+          <Property Name="beneficiary_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customer_id" Type="int" />
+          <Property Name="account_number" Type="int" />
+          <Property Name="beneficiary_account_number" Type="int" />
+          <Property Name="nickname" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblCustomers">
+          <Key>
+            <PropertyRef Name="Reference_id" />
+          </Key>
+          <Property Name="Reference_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="middle_name" Type="varchar" MaxLength="30" />
+          <Property Name="Last_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Father_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="mobile_number" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="email_id" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="account_type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="aadhar_number" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="date_of_birth" Type="date" Nullable="false" />
+          <Property Name="age" Type="int" Nullable="false" />
+          <Property Name="gender" Type="varchar" MaxLength="10" />
+          <Property Name="Residential_address" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="permanent_address" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="occupation_Type" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="source_of_income" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="gross_income" Type="float" Nullable="false" />
+          <Property Name="account_OpenDate" Type="date" />
+          <Property Name="approved_status" Type="varchar" MaxLength="10" />
+          <Property Name="approved_by" Type="varchar" MaxLength="20" />
+          <Property Name="approved_date" Type="date" />
+        </EntityType>
+        <EntityType Name="tblLocked">
+          <Key>
+            <PropertyRef Name="account_number" />
+          </Key>
+          <Property Name="user_id" Type="int" />
+          <Property Name="account_number" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblNetBanking">
+          <Key>
+            <PropertyRef Name="account_number" />
+          </Key>
+          <Property Name="user_id" Type="int" />
+          <Property Name="account_number" Type="int" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="transaction_password" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblTransactions">
+          <Key>
+            <PropertyRef Name="transaction_id" />
+          </Key>
+          <Property Name="customer_id" Type="int" />
+          <Property Name="transaction_type" Type="varchar" MaxLength="10" />
+          <Property Name="from_account" Type="int" />
+          <Property Name="to_account" Type="int" />
+          <Property Name="from_Account_balance" Type="float" />
+          <Property Name="to_Account_balance" Type="float" />
+          <Property Name="amount" Type="float" />
+          <Property Name="transaction_date" Type="date" />
+          <Property Name="remarks" Type="text" />
+          <Property Name="transaction_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUserotp">
+          <Key>
+            <PropertyRef Name="otp" />
+          </Key>
+          <Property Name="email_id" Type="varchar" MaxLength="20" />
+          <Property Name="otp" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tblBalanc__custo__239E4DCF">
+          <End Role="tblBankingCustomers" Type="Self.tblBankingCustomers" Multiplicity="0..1" />
+          <End Role="tblBalance" Type="Self.tblBalance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBankingCustomers">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="tblBalance">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBankin__Refer__182C9B23">
+          <End Role="tblCustomers" Type="Self.tblCustomers" Multiplicity="0..1" />
+          <End Role="tblBankingCustomers" Type="Self.tblBankingCustomers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomers">
+              <PropertyRef Name="Reference_id" />
+            </Principal>
+            <Dependent Role="tblBankingCustomers">
+              <PropertyRef Name="Reference_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBenefi__custo__276EDEB3">
+          <End Role="tblBankingCustomers" Type="Self.tblBankingCustomers" Multiplicity="0..1" />
+          <End Role="tblBeneficiaries" Type="Self.tblBeneficiaries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBankingCustomers">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="tblBeneficiaries">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCustom__appro__145C0A3F">
+          <End Role="tbladmin" Type="Self.tbladmin" Multiplicity="0..1" />
+          <End Role="tblCustomers" Type="Self.tblCustomers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbladmin">
+              <PropertyRef Name="admin_id" />
+            </Principal>
+            <Dependent Role="tblCustomers">
+              <PropertyRef Name="approved_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLocked__user___2A4B4B5E">
+          <End Role="tblBankingCustomers" Type="Self.tblBankingCustomers" Multiplicity="0..1" />
+          <End Role="tblLocked" Type="Self.tblLocked" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBankingCustomers">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="tblLocked">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblNetBan__user___1CF15040">
+          <End Role="tblBankingCustomers" Type="Self.tblBankingCustomers" Multiplicity="0..1" />
+          <End Role="tblNetBanking" Type="Self.tblNetBanking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBankingCustomers">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="tblNetBanking">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblTransa__custo__20C1E124">
+          <End Role="tblBankingCustomers" Type="Self.tblBankingCustomers" Multiplicity="0..1" />
+          <End Role="tblTransactions" Type="Self.tblTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBankingCustomers">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="tblTransactions">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="get_ReferenceId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Mini_Statement1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="start_date" Type="varchar" Mode="In" />
+          <Parameter Name="end_date" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_accountsummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_CheckCust" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accno" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_GetApprovedCustomers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="proc_GetCustomersProfilesbyReferenceid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_GetdetailsForMail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_GetheCustomerApplications" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="proc_GetPendingApplications" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="proc_InsertApprvCustomersinBankingTble" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="acc_number" Type="bigint" Mode="In" />
+          <Parameter Name="acc_date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="proc_InsertintotblwithEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="otp" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_InsertintotblwithEmailadmin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="otp" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_LoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="varchar" Mode="In" />
+          <Parameter Name="pass" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Mini_Statement1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="account" Type="int" Mode="In" />
+          <Parameter Name="start_date" Type="varchar" Mode="In" />
+          <Parameter Name="end_date" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_OtpCheck2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mail" Type="varchar" Mode="In" />
+          <Parameter Name="otp" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_OtpCheckadmin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mail" Type="varchar" Mode="In" />
+          <Parameter Name="otp" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_Recent_Transactions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="account" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_RejectedApplications" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="proc_resetpssd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_sendemail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_senduserid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_test" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_test2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_test3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_updatepassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_uptable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_ValidCust" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="aadharno" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_ValidReg" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ano" Type="int" Mode="In" />
+        </Function>
+        <Function Name="procedure_GetUserProfilesForCustomers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Recent_Transactions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_checkOldPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_id" Type="int" Mode="In" />
+          <Parameter Name="old_pwd" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_checkOldTransactionPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_id" Type="int" Mode="In" />
+          <Parameter Name="oldt_pwd" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_DisplayTransaction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="trans_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getEmailId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="customerId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_LoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+          <Parameter Name="pwd" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_SelectTransactionId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="acnt_no" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_transact" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cust_id" Type="int" Mode="In" />
+          <Parameter Name="mode" Type="varchar" Mode="In" />
+          <Parameter Name="from_acnt" Type="int" Mode="In" />
+          <Parameter Name="to_acnt" Type="int" Mode="In" />
+          <Parameter Name="from_acnt_bal" Type="float" Mode="In" />
+          <Parameter Name="to_acnt_bal" Type="float" Mode="In" />
+          <Parameter Name="amount" Type="float" Mode="In" />
+          <Parameter Name="trans_date" Type="date" Mode="In" />
+          <Parameter Name="remarks" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_updateLoginPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_id" Type="int" Mode="In" />
+          <Parameter Name="l_pwd" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_updateTransactionPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_id" Type="int" Mode="In" />
+          <Parameter Name="t_pwd" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="trackApplication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="refid" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="dbBankModelStoreContainer">
+          <EntitySet Name="tbladmin" EntityType="Self.tbladmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAdminOtp" EntityType="Self.tblAdminOtp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBalance" EntityType="Self.tblBalance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBankingCustomers" EntityType="Self.tblBankingCustomers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBeneficiaries" EntityType="Self.tblBeneficiaries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCustomers" EntityType="Self.tblCustomers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLocked" EntityType="Self.tblLocked" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblNetBanking" EntityType="Self.tblNetBanking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTransactions" EntityType="Self.tblTransactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserotp" EntityType="Self.tblUserotp" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblBalanc__custo__239E4DCF" Association="Self.FK__tblBalanc__custo__239E4DCF">
+            <End Role="tblBankingCustomers" EntitySet="tblBankingCustomers" />
+            <End Role="tblBalance" EntitySet="tblBalance" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBankin__Refer__182C9B23" Association="Self.FK__tblBankin__Refer__182C9B23">
+            <End Role="tblCustomers" EntitySet="tblCustomers" />
+            <End Role="tblBankingCustomers" EntitySet="tblBankingCustomers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBenefi__custo__276EDEB3" Association="Self.FK__tblBenefi__custo__276EDEB3">
+            <End Role="tblBankingCustomers" EntitySet="tblBankingCustomers" />
+            <End Role="tblBeneficiaries" EntitySet="tblBeneficiaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCustom__appro__145C0A3F" Association="Self.FK__tblCustom__appro__145C0A3F">
+            <End Role="tbladmin" EntitySet="tbladmin" />
+            <End Role="tblCustomers" EntitySet="tblCustomers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLocked__user___2A4B4B5E" Association="Self.FK__tblLocked__user___2A4B4B5E">
+            <End Role="tblBankingCustomers" EntitySet="tblBankingCustomers" />
+            <End Role="tblLocked" EntitySet="tblLocked" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblNetBan__user___1CF15040" Association="Self.FK__tblNetBan__user___1CF15040">
+            <End Role="tblBankingCustomers" EntitySet="tblBankingCustomers" />
+            <End Role="tblNetBanking" EntitySet="tblNetBanking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblTransa__custo__20C1E124" Association="Self.FK__tblTransa__custo__20C1E124">
+            <End Role="tblBankingCustomers" EntitySet="tblBankingCustomers" />
+            <End Role="tblTransactions" EntitySet="tblTransactions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbBankModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbladmin">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="admin_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblCustomers" Relationship="Self.FK__tblCustom__appro__145C0A3F" FromRole="tbladmin" ToRole="tblCustomers" />
+          <Property Name="email_id" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblBalance">
+          <Key>
+            <PropertyRef Name="account_number" />
+          </Key>
+          <Property Name="customer_id" Type="Int32" />
+          <Property Name="account_number" Type="Int32" Nullable="false" />
+          <Property Name="account_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="balance" Type="Double" />
+          <NavigationProperty Name="tblBankingCustomer" Relationship="Self.FK__tblBalanc__custo__239E4DCF" FromRole="tblBalance" ToRole="tblBankingCustomers" />
+        </EntityType>
+        <EntityType Name="tblBankingCustomer">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="Reference_id" Type="Int32" />
+          <Property Name="customer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="account_number" Type="Int32" Nullable="false" />
+          <Property Name="account_OpenDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblBalances" Relationship="Self.FK__tblBalanc__custo__239E4DCF" FromRole="tblBankingCustomers" ToRole="tblBalance" />
+          <NavigationProperty Name="tblCustomer" Relationship="Self.FK__tblBankin__Refer__182C9B23" FromRole="tblBankingCustomers" ToRole="tblCustomers" />
+          <NavigationProperty Name="tblBeneficiaries" Relationship="Self.FK__tblBenefi__custo__276EDEB3" FromRole="tblBankingCustomers" ToRole="tblBeneficiaries" />
+          <NavigationProperty Name="tblLockeds" Relationship="Self.FK__tblLocked__user___2A4B4B5E" FromRole="tblBankingCustomers" ToRole="tblLocked" />
+          <NavigationProperty Name="tblNetBankings" Relationship="Self.FK__tblNetBan__user___1CF15040" FromRole="tblBankingCustomers" ToRole="tblNetBanking" />
+          <NavigationProperty Name="tblTransactions" Relationship="Self.FK__tblTransa__custo__20C1E124" FromRole="tblBankingCustomers" ToRole="tblTransactions" />
+        </EntityType>
+        <EntityType Name="tblBeneficiary">
+          <Key>
+            <PropertyRef Name="beneficiary_id" />
+          </Key>
+          <Property Name="beneficiary_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_id" Type="Int32" />
+          <Property Name="account_number" Type="Int32" />
+          <Property Name="beneficiary_account_number" Type="Int32" />
+          <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblBankingCustomer" Relationship="Self.FK__tblBenefi__custo__276EDEB3" FromRole="tblBeneficiaries" ToRole="tblBankingCustomers" />
+        </EntityType>
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="Reference_id" />
+          </Key>
+          <Property Name="Reference_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="middle_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Father_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mobile_number" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email_id" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="account_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="aadhar_number" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="age" Type="Int32" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Residential_address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="permanent_address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="occupation_Type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="source_of_income" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gross_income" Type="Double" Nullable="false" />
+          <Property Name="account_OpenDate" Type="DateTime" Precision="0" />
+          <Property Name="approved_status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="approved_by" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="approved_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tbladmin" Relationship="Self.FK__tblCustom__appro__145C0A3F" FromRole="tblCustomers" ToRole="tbladmin" />
+          <NavigationProperty Name="tblBankingCustomers" Relationship="Self.FK__tblBankin__Refer__182C9B23" FromRole="tblCustomers" ToRole="tblBankingCustomers" />
+        </EntityType>
+        <EntityType Name="tblLocked">
+          <Key>
+            <PropertyRef Name="account_number" />
+          </Key>
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="account_number" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblBankingCustomer" Relationship="Self.FK__tblLocked__user___2A4B4B5E" FromRole="tblLocked" ToRole="tblBankingCustomers" />
+        </EntityType>
+        <EntityType Name="tblNetBanking">
+          <Key>
+            <PropertyRef Name="account_number" />
+          </Key>
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="account_number" Type="Int32" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="transaction_password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblBankingCustomer" Relationship="Self.FK__tblNetBan__user___1CF15040" FromRole="tblNetBanking" ToRole="tblBankingCustomers" />
+        </EntityType>
+        <EntityType Name="tblTransaction">
+          <Key>
+            <PropertyRef Name="transaction_id" />
+          </Key>
+          <Property Name="customer_id" Type="Int32" />
+          <Property Name="transaction_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="from_account" Type="Int32" />
+          <Property Name="to_account" Type="Int32" />
+          <Property Name="from_Account_balance" Type="Double" />
+          <Property Name="to_Account_balance" Type="Double" />
+          <Property Name="amount" Type="Double" />
+          <Property Name="transaction_date" Type="DateTime" Precision="0" />
+          <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="transaction_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="tblBankingCustomer" Relationship="Self.FK__tblTransa__custo__20C1E124" FromRole="tblTransactions" ToRole="tblBankingCustomers" />
+        </EntityType>
+        <Association Name="FK__tblCustom__appro__145C0A3F">
+          <End Role="tbladmin" Type="Self.tbladmin" Multiplicity="0..1" />
+          <End Role="tblCustomers" Type="Self.tblCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbladmin">
+              <PropertyRef Name="admin_id" />
+            </Principal>
+            <Dependent Role="tblCustomers">
+              <PropertyRef Name="approved_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBalanc__custo__239E4DCF">
+          <End Role="tblBankingCustomers" Type="Self.tblBankingCustomer" Multiplicity="0..1" />
+          <End Role="tblBalance" Type="Self.tblBalance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBankingCustomers">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="tblBalance">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBankin__Refer__182C9B23">
+          <End Role="tblCustomers" Type="Self.tblCustomer" Multiplicity="0..1" />
+          <End Role="tblBankingCustomers" Type="Self.tblBankingCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomers">
+              <PropertyRef Name="Reference_id" />
+            </Principal>
+            <Dependent Role="tblBankingCustomers">
+              <PropertyRef Name="Reference_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBenefi__custo__276EDEB3">
+          <End Role="tblBankingCustomers" Type="Self.tblBankingCustomer" Multiplicity="0..1" />
+          <End Role="tblBeneficiaries" Type="Self.tblBeneficiary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBankingCustomers">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="tblBeneficiaries">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLocked__user___2A4B4B5E">
+          <End Role="tblBankingCustomers" Type="Self.tblBankingCustomer" Multiplicity="0..1" />
+          <End Role="tblLocked" Type="Self.tblLocked" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBankingCustomers">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="tblLocked">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblNetBan__user___1CF15040">
+          <End Role="tblBankingCustomers" Type="Self.tblBankingCustomer" Multiplicity="0..1" />
+          <End Role="tblNetBanking" Type="Self.tblNetBanking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBankingCustomers">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="tblNetBanking">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblTransa__custo__20C1E124">
+          <End Role="tblBankingCustomers" Type="Self.tblBankingCustomer" Multiplicity="0..1" />
+          <End Role="tblTransactions" Type="Self.tblTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBankingCustomers">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="tblTransactions">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbBankEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbladmins" EntityType="Self.tbladmin" />
+          <EntitySet Name="tblBalances" EntityType="Self.tblBalance" />
+          <EntitySet Name="tblBankingCustomers" EntityType="Self.tblBankingCustomer" />
+          <EntitySet Name="tblBeneficiaries" EntityType="Self.tblBeneficiary" />
+          <EntitySet Name="tblCustomers" EntityType="Self.tblCustomer" />
+          <EntitySet Name="tblLockeds" EntityType="Self.tblLocked" />
+          <EntitySet Name="tblNetBankings" EntityType="Self.tblNetBanking" />
+          <EntitySet Name="tblTransactions" EntityType="Self.tblTransaction" />
+          <AssociationSet Name="FK__tblCustom__appro__145C0A3F" Association="Self.FK__tblCustom__appro__145C0A3F">
+            <End Role="tbladmin" EntitySet="tbladmins" />
+            <End Role="tblCustomers" EntitySet="tblCustomers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBalanc__custo__239E4DCF" Association="Self.FK__tblBalanc__custo__239E4DCF">
+            <End Role="tblBankingCustomers" EntitySet="tblBankingCustomers" />
+            <End Role="tblBalance" EntitySet="tblBalances" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBankin__Refer__182C9B23" Association="Self.FK__tblBankin__Refer__182C9B23">
+            <End Role="tblCustomers" EntitySet="tblCustomers" />
+            <End Role="tblBankingCustomers" EntitySet="tblBankingCustomers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBenefi__custo__276EDEB3" Association="Self.FK__tblBenefi__custo__276EDEB3">
+            <End Role="tblBankingCustomers" EntitySet="tblBankingCustomers" />
+            <End Role="tblBeneficiaries" EntitySet="tblBeneficiaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLocked__user___2A4B4B5E" Association="Self.FK__tblLocked__user___2A4B4B5E">
+            <End Role="tblBankingCustomers" EntitySet="tblBankingCustomers" />
+            <End Role="tblLocked" EntitySet="tblLockeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblNetBan__user___1CF15040" Association="Self.FK__tblNetBan__user___1CF15040">
+            <End Role="tblBankingCustomers" EntitySet="tblBankingCustomers" />
+            <End Role="tblNetBanking" EntitySet="tblNetBankings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblTransa__custo__20C1E124" Association="Self.FK__tblTransa__custo__20C1E124">
+            <End Role="tblBankingCustomers" EntitySet="tblBankingCustomers" />
+            <End Role="tblTransactions" EntitySet="tblTransactions" />
+          </AssociationSet>
+          <FunctionImport Name="get_ReferenceId" ReturnType="Collection(Int32)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Mini_Statement1" ReturnType="Collection(dbBankModel.Mini_Statement1_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="start_date" Mode="In" Type="String" />
+            <Parameter Name="end_date" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_accountsummary" ReturnType="Collection(dbBankModel.proc_accountsummary_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_CheckCust" ReturnType="Collection(Int32)">
+          <Parameter Name="accno" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_test" ReturnType="Collection(Int32)">
+          <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_test2" ReturnType="Collection(Int32)">
+          <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_test3" ReturnType="Collection(Int32)">
+          <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_ValidCust" ReturnType="Collection(String)">
+          <Parameter Name="aadharno" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_ValidReg" ReturnType="Collection(Int32)">
+          <Parameter Name="ano" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="procedure_GetUserProfilesForCustomers" ReturnType="Collection(dbBankModel.procedure_GetUserProfilesForCustomers_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Recent_Transactions" ReturnType="Collection(dbBankModel.Recent_Transactions_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DisplayTransaction" ReturnType="Collection(dbBankModel.sp_DisplayTransaction_Result)">
+          <Parameter Name="trans_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_LoginCheck" ReturnType="Collection(dbBankModel.sp_LoginCheck_Result)">
+            <Parameter Name="userid" Mode="In" Type="Int32" />
+            <Parameter Name="pwd" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_SelectTransactionId" ReturnType="Collection(Int32)">
+          <Parameter Name="acnt_no" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_transact">
+            <Parameter Name="cust_id" Mode="In" Type="Int32" />
+            <Parameter Name="mode" Mode="In" Type="String" />
+            <Parameter Name="from_acnt" Mode="In" Type="Int32" />
+            <Parameter Name="to_acnt" Mode="In" Type="Int32" />
+            <Parameter Name="from_acnt_bal" Mode="In" Type="Double" />
+            <Parameter Name="to_acnt_bal" Mode="In" Type="Double" />
+            <Parameter Name="amount" Mode="In" Type="Double" />
+            <Parameter Name="trans_date" Mode="In" Type="DateTime" />
+            <Parameter Name="remarks" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_ValidCust1" ReturnType="Collection(dbBankModel.proc_ValidCust1_Result)">
+          <Parameter Name="aadharno" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_test1" ReturnType="Collection(dbBankModel.proc_test1_Result)">
+          <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_test21" ReturnType="Collection(dbBankModel.proc_test21_Result)">
+          <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_test31" ReturnType="Collection(dbBankModel.proc_test31_Result)">
+          <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="trackApplication" ReturnType="Collection(dbBankModel.trackApplication_Result)">
+          <Parameter Name="refid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_checkOldPassword" ReturnType="Collection(Int32)">
+            <Parameter Name="user_id" Mode="In" Type="Int32" />
+            <Parameter Name="old_pwd" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_checkOldTransactionPassword" ReturnType="Collection(Int32)">
+            <Parameter Name="user_id" Mode="In" Type="Int32" />
+            <Parameter Name="oldt_pwd" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_updateLoginPassword">
+            <Parameter Name="user_id" Mode="In" Type="Int32" />
+            <Parameter Name="l_pwd" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_updateTransactionPassword">
+            <Parameter Name="user_id" Mode="In" Type="Int32" />
+            <Parameter Name="t_pwd" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_sendemail" ReturnType="Collection(Int32)">
+          <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_sendemail1" ReturnType="Collection(dbBankModel.proc_sendemail1_Result)">
+          <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="tblUserotps" EntityType="dbBankModel.tblUserotp" />
+          <FunctionImport Name="proc_InsertintotblwithEmail">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="otp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_OtpCheck2" ReturnType="Collection(dbBankModel.proc_OtpCheck2_Result)">
+            <Parameter Name="mail" Mode="In" Type="String" />
+            <Parameter Name="otp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_resetpssd" ReturnType="Collection(String)">
+          <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_uptable" ReturnType="Collection(dbBankModel.proc_uptable_Result)">
+          <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_uptable1" ReturnType="Collection(dbBankModel.proc_uptable1_Result)">
+          <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_updatepassword">
+            <Parameter Name="userid" Mode="In" Type="Int32" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_senduserid" ReturnType="Collection(Int32)">
+          <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_senduserid1" ReturnType="Collection(dbBankModel.proc_senduserid1_Result1)">
+          <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Mini_Statement1" ReturnType="Collection(dbBankModel.proc_Mini_Statement1_Result)">
+            <Parameter Name="account" Mode="In" Type="Int32" />
+            <Parameter Name="start_date" Mode="In" Type="String" />
+            <Parameter Name="end_date" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Recent_Transactions" ReturnType="Collection(dbBankModel.proc_Recent_Transactions_Result)">
+          <Parameter Name="account" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="tblAdminOtps" EntityType="dbBankModel.tblAdminOtp" />
+          <FunctionImport Name="proc_InsertintotblwithEmailadmin">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="otp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_OtpCheckadmin" ReturnType="Collection(dbBankModel.proc_OtpCheckadmin_Result)">
+            <Parameter Name="mail" Mode="In" Type="String" />
+            <Parameter Name="otp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetPendingApplications" ReturnType="Collection(dbBankModel.proc_GetPendingApplications_Result)" />
+          <FunctionImport Name="proc_RejectedApplications" ReturnType="Collection(dbBankModel.proc_RejectedApplications_Result)" />
+          <FunctionImport Name="proc_GetApprovedCustomers" ReturnType="Collection(dbBankModel.proc_GetApprovedCustomers_Result)" />
+          <FunctionImport Name="proc_InsertApprvCustomersinBankingTble">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="acc_number" Mode="In" Type="Int64" />
+            <Parameter Name="acc_date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetCustomersProfilesbyReferenceid" ReturnType="Collection(dbBankModel.proc_GetCustomersProfilesbyReferenceid_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetheCustomerApplications" ReturnType="Collection(dbBankModel.proc_GetheCustomerApplications_Result)" />
+          <FunctionImport Name="proc_LoginCheck" ReturnType="Collection(dbBankModel.proc_LoginCheck_Result)">
+            <Parameter Name="id" Mode="In" Type="String" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetdetailsForMail" ReturnType="Collection(dbBankModel.proc_GetdetailsForMail_Result)">
+          <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getEmailId" ReturnType="Collection(String)">
+            <Parameter Name="customerId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Mini_Statement1_Result">
+          <Property Type="Int32" Name="transaction_id" Nullable="false" />
+          <Property Type="String" Name="transaction_type" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="transaction_date" Nullable="true" />
+          <Property Type="Double" Name="amount" Nullable="true" />
+          <Property Type="Double" Name="from_Account_balance" Nullable="true" />
+          <Property Type="String" Name="remarks" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="proc_accountsummary_Result">
+          <Property Type="Int32" Name="account_number" Nullable="false" />
+          <Property Type="Double" Name="balance" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="procedure_GetUserProfilesForCustomers_Result">
+          <Property Type="String" Name="First_name" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="middle_name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Last_name" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="mobile_number" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="email_id" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="aadhar_number" Nullable="false" MaxLength="16" />
+          <Property Type="String" Name="gender" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="date_of_birth" Nullable="false" />
+          <Property Type="String" Name="Residential_address" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="permanent_address" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="occupation_Type" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="Recent_Transactions_Result">
+          <Property Type="Int32" Name="customer_id" Nullable="true" />
+          <Property Type="String" Name="transaction_type" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="from_account" Nullable="true" />
+          <Property Type="Int32" Name="to_account" Nullable="true" />
+          <Property Type="Double" Name="from_Account_balance" Nullable="true" />
+          <Property Type="Double" Name="to_Account_balance" Nullable="true" />
+          <Property Type="Double" Name="amount" Nullable="true" />
+          <Property Type="DateTime" Name="transaction_date" Nullable="true" />
+          <Property Type="String" Name="remarks" Nullable="true" MaxLength="Max" />
+          <Property Type="Int32" Name="transaction_id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_DisplayTransaction_Result">
+          <Property Type="Int32" Name="transaction_id" Nullable="false" />
+          <Property Type="String" Name="transaction_type" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="to_account" Nullable="true" />
+          <Property Type="Double" Name="amount" Nullable="true" />
+          <Property Type="Int32" Name="from_account" Nullable="true" />
+          <Property Type="DateTime" Name="transaction_date" Nullable="true" />
+          <Property Type="String" Name="remarks" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="sp_LoginCheck_Result">
+          <Property Type="Int32" Name="user_id" Nullable="true" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="15" />
+        </ComplexType>
+        <ComplexType Name="proc_ValidCust1_Result">
+          <Property Type="String" Name="aadhar_number" Nullable="false" MaxLength="16" />
+        </ComplexType>
+        <ComplexType Name="proc_test1_Result">
+          <Property Type="Int32" Name="customer_id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_test21_Result">
+          <Property Type="Int32" Name="customer_id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_test31_Result">
+          <Property Type="Int32" Name="user_id" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="trackApplication_Result">
+          <Property Type="Int32" Name="Reference_id" Nullable="false" />
+          <Property Type="String" Name="account_type" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="approved_status" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="approved_date" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_sendemail1_Result">
+          <Property Type="Int32" Name="Reference_id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_senduserid1_Result">
+          <Property Type="Int32" Name="customer_id" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="tblUserotp">
+          <Key>
+            <PropertyRef Name="otp" />
+          </Key>
+          <Property Name="email_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="otp" Type="Int32" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="proc_OtpCheck2_Result">
+          <Property Type="String" Name="email_id" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="otp" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_uptable_Result">
+          <Property Type="Int32" Name="user_id" Nullable="true" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="15" />
+        </ComplexType>
+        <ComplexType Name="proc_uptable1_Result">
+          <Property Type="Int32" Name="user_id" Nullable="true" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="15" />
+        </ComplexType>
+        <ComplexType Name="proc_senduserid1_Result1">
+          <Property Type="Int32" Name="user_id" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_Mini_Statement1_Result">
+          <Property Type="Int32" Name="transaction_id" Nullable="false" />
+          <Property Type="String" Name="transaction_type" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="transaction_date" Nullable="true" />
+          <Property Type="Double" Name="amount" Nullable="true" />
+          <Property Type="Double" Name="from_Account_balance" Nullable="true" />
+          <Property Type="String" Name="remarks" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="proc_Recent_Transactions_Result">
+          <Property Type="Int32" Name="customer_id" Nullable="true" />
+          <Property Type="String" Name="transaction_type" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="from_account" Nullable="true" />
+          <Property Type="Int32" Name="to_account" Nullable="true" />
+          <Property Type="Double" Name="from_Account_balance" Nullable="true" />
+          <Property Type="Double" Name="to_Account_balance" Nullable="true" />
+          <Property Type="Double" Name="amount" Nullable="true" />
+          <Property Type="DateTime" Name="transaction_date" Nullable="true" />
+          <Property Type="String" Name="remarks" Nullable="true" MaxLength="Max" />
+          <Property Type="Int32" Name="transaction_id" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="tblAdminOtp">
+          <Key>
+            <PropertyRef Name="opt" />
+          </Key>
+          <Property Name="email_id" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="opt" Type="Int32" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="proc_OtpCheckadmin_Result">
+          <Property Type="String" Name="email_id" Nullable="true" MaxLength="40" />
+          <Property Type="Int32" Name="opt" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_GetPendingApplications_Result">
+          <Property Type="Int32" Name="Reference_id" Nullable="false" />
+          <Property Type="String" Name="First_name" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="middle_name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Last_name" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="mobile_number" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="email_id" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="aadhar_number" Nullable="false" MaxLength="16" />
+        </ComplexType>
+        <ComplexType Name="proc_RejectedApplications_Result">
+          <Property Type="Int32" Name="Reference_id" Nullable="false" />
+          <Property Type="String" Name="First_name" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="middle_name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Last_name" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="mobile_number" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="email_id" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="aadhar_number" Nullable="false" MaxLength="16" />
+        </ComplexType>
+        <ComplexType Name="proc_GetApprovedCustomers_Result">
+          <Property Type="Int32" Name="Reference_id" Nullable="false" />
+          <Property Type="String" Name="First_name" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="middle_name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Last_name" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="mobile_number" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="email_id" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="aadhar_number" Nullable="false" MaxLength="16" />
+        </ComplexType>
+        <ComplexType Name="proc_GetCustomersProfilesbyReferenceid_Result">
+          <Property Type="Int32" Name="Reference_id" Nullable="false" />
+          <Property Type="String" Name="First_name" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="middle_name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Last_name" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Father_name" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="mobile_number" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="email_id" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="account_type" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="aadhar_number" Nullable="false" MaxLength="16" />
+          <Property Type="DateTime" Name="date_of_birth" Nullable="false" />
+          <Property Type="Int32" Name="age" Nullable="false" />
+          <Property Type="String" Name="gender" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Residential_address" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="permanent_address" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="occupation_Type" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="source_of_income" Nullable="false" MaxLength="30" />
+          <Property Type="Double" Name="gross_income" Nullable="false" />
+          <Property Type="DateTime" Name="account_OpenDate" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_GetheCustomerApplications_Result">
+          <Property Type="Int32" Name="Reference_id" Nullable="false" />
+          <Property Type="String" Name="First_name" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="middle_name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Last_name" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="proc_LoginCheck_Result">
+          <Property Type="String" Name="admin_id" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="15" />
+        </ComplexType>
+        <ComplexType Name="proc_GetdetailsForMail_Result">
+          <Property Type="Int32" Name="customer_id" Nullable="false" />
+          <Property Type="Int32" Name="account_number" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbBankModelStoreContainer" CdmEntityContainer="dbBankEntities1">
+          <EntitySetMapping Name="tbladmins">
+            <EntityTypeMapping TypeName="dbBankModel.tbladmin">
+              <MappingFragment StoreEntitySet="tbladmin">
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBalances">
+            <EntityTypeMapping TypeName="dbBankModel.tblBalance">
+              <MappingFragment StoreEntitySet="tblBalance">
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="account_number" ColumnName="account_number" />
+                <ScalarProperty Name="account_type" ColumnName="account_type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBankingCustomers">
+            <EntityTypeMapping TypeName="dbBankModel.tblBankingCustomer">
+              <MappingFragment StoreEntitySet="tblBankingCustomers">
+                <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="account_number" ColumnName="account_number" />
+                <ScalarProperty Name="account_OpenDate" ColumnName="account_OpenDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBeneficiaries">
+            <EntityTypeMapping TypeName="dbBankModel.tblBeneficiary">
+              <MappingFragment StoreEntitySet="tblBeneficiaries">
+                <ScalarProperty Name="beneficiary_id" ColumnName="beneficiary_id" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="account_number" ColumnName="account_number" />
+                <ScalarProperty Name="beneficiary_account_number" ColumnName="beneficiary_account_number" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCustomers">
+            <EntityTypeMapping TypeName="dbBankModel.tblCustomer">
+              <MappingFragment StoreEntitySet="tblCustomers">
+                <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+                <ScalarProperty Name="First_name" ColumnName="First_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+                <ScalarProperty Name="Father_name" ColumnName="Father_name" />
+                <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="account_type" ColumnName="account_type" />
+                <ScalarProperty Name="aadhar_number" ColumnName="aadhar_number" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="Residential_address" ColumnName="Residential_address" />
+                <ScalarProperty Name="permanent_address" ColumnName="permanent_address" />
+                <ScalarProperty Name="occupation_Type" ColumnName="occupation_Type" />
+                <ScalarProperty Name="source_of_income" ColumnName="source_of_income" />
+                <ScalarProperty Name="gross_income" ColumnName="gross_income" />
+                <ScalarProperty Name="account_OpenDate" ColumnName="account_OpenDate" />
+                <ScalarProperty Name="approved_status" ColumnName="approved_status" />
+                <ScalarProperty Name="approved_by" ColumnName="approved_by" />
+                <ScalarProperty Name="approved_date" ColumnName="approved_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLockeds">
+            <EntityTypeMapping TypeName="dbBankModel.tblLocked">
+              <MappingFragment StoreEntitySet="tblLocked">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="account_number" ColumnName="account_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblNetBankings">
+            <EntityTypeMapping TypeName="dbBankModel.tblNetBanking">
+              <MappingFragment StoreEntitySet="tblNetBanking">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="account_number" ColumnName="account_number" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="transaction_password" ColumnName="transaction_password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTransactions">
+            <EntityTypeMapping TypeName="dbBankModel.tblTransaction">
+              <MappingFragment StoreEntitySet="tblTransactions">
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+                <ScalarProperty Name="from_account" ColumnName="from_account" />
+                <ScalarProperty Name="to_account" ColumnName="to_account" />
+                <ScalarProperty Name="from_Account_balance" ColumnName="from_Account_balance" />
+                <ScalarProperty Name="to_Account_balance" ColumnName="to_Account_balance" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="get_ReferenceId" FunctionName="dbBankModel.Store.get_ReferenceId" />
+          <FunctionImportMapping FunctionImportName="Mini_Statement1" FunctionName="dbBankModel.Store.Mini_Statement1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.Mini_Statement1_Result">
+                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+                <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+                <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="from_Account_balance" ColumnName="from_Account_balance" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_accountsummary" FunctionName="dbBankModel.Store.proc_accountsummary">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_accountsummary_Result">
+                <ScalarProperty Name="account_number" ColumnName="account_number" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_CheckCust" FunctionName="dbBankModel.Store.proc_CheckCust" />
+          <FunctionImportMapping FunctionImportName="proc_test" FunctionName="dbBankModel.Store.proc_test" />
+          <FunctionImportMapping FunctionImportName="proc_test2" FunctionName="dbBankModel.Store.proc_test2" />
+          <FunctionImportMapping FunctionImportName="proc_test3" FunctionName="dbBankModel.Store.proc_test3" />
+          <FunctionImportMapping FunctionImportName="proc_ValidCust" FunctionName="dbBankModel.Store.proc_ValidCust" />
+          <FunctionImportMapping FunctionImportName="proc_ValidReg" FunctionName="dbBankModel.Store.proc_ValidReg" />
+          <FunctionImportMapping FunctionImportName="procedure_GetUserProfilesForCustomers" FunctionName="dbBankModel.Store.procedure_GetUserProfilesForCustomers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.procedure_GetUserProfilesForCustomers_Result">
+                <ScalarProperty Name="First_name" ColumnName="First_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+                <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="aadhar_number" ColumnName="aadhar_number" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="Residential_address" ColumnName="Residential_address" />
+                <ScalarProperty Name="permanent_address" ColumnName="permanent_address" />
+                <ScalarProperty Name="occupation_Type" ColumnName="occupation_Type" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Recent_Transactions" FunctionName="dbBankModel.Store.Recent_Transactions">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.Recent_Transactions_Result">
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+                <ScalarProperty Name="from_account" ColumnName="from_account" />
+                <ScalarProperty Name="to_account" ColumnName="to_account" />
+                <ScalarProperty Name="from_Account_balance" ColumnName="from_Account_balance" />
+                <ScalarProperty Name="to_Account_balance" ColumnName="to_Account_balance" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_DisplayTransaction" FunctionName="dbBankModel.Store.sp_DisplayTransaction">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.sp_DisplayTransaction_Result">
+                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+                <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+                <ScalarProperty Name="to_account" ColumnName="to_account" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="from_account" ColumnName="from_account" />
+                <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_LoginCheck" FunctionName="dbBankModel.Store.sp_LoginCheck">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.sp_LoginCheck_Result">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_SelectTransactionId" FunctionName="dbBankModel.Store.sp_SelectTransactionId" />
+          <FunctionImportMapping FunctionImportName="sp_transact" FunctionName="dbBankModel.Store.sp_transact" />
+          <FunctionImportMapping FunctionImportName="proc_ValidCust1" FunctionName="dbBankModel.Store.proc_ValidCust">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_ValidCust1_Result">
+                <ScalarProperty Name="aadhar_number" ColumnName="aadhar_number" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_test1" FunctionName="dbBankModel.Store.proc_test">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_test1_Result">
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_test21" FunctionName="dbBankModel.Store.proc_test2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_test21_Result">
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_test31" FunctionName="dbBankModel.Store.proc_test3">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_test31_Result">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="trackApplication" FunctionName="dbBankModel.Store.trackApplication">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.trackApplication_Result">
+                <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+                <ScalarProperty Name="account_type" ColumnName="account_type" />
+                <ScalarProperty Name="approved_status" ColumnName="approved_status" />
+                <ScalarProperty Name="approved_date" ColumnName="approved_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_checkOldPassword" FunctionName="dbBankModel.Store.sp_checkOldPassword" />
+          <FunctionImportMapping FunctionImportName="sp_checkOldTransactionPassword" FunctionName="dbBankModel.Store.sp_checkOldTransactionPassword" />
+          <FunctionImportMapping FunctionImportName="sp_updateLoginPassword" FunctionName="dbBankModel.Store.sp_updateLoginPassword" />
+          <FunctionImportMapping FunctionImportName="sp_updateTransactionPassword" FunctionName="dbBankModel.Store.sp_updateTransactionPassword" />
+          <FunctionImportMapping FunctionImportName="proc_sendemail" FunctionName="dbBankModel.Store.proc_sendemail" />
+          <FunctionImportMapping FunctionImportName="proc_sendemail1" FunctionName="dbBankModel.Store.proc_sendemail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_sendemail1_Result">
+                <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tblUserotps">
+            <EntityTypeMapping TypeName="dbBankModel.tblUserotp">
+              <MappingFragment StoreEntitySet="tblUserotp">
+                <ScalarProperty Name="otp" ColumnName="otp" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="proc_InsertintotblwithEmail" FunctionName="dbBankModel.Store.proc_InsertintotblwithEmail" />
+          <FunctionImportMapping FunctionImportName="proc_OtpCheck2" FunctionName="dbBankModel.Store.proc_OtpCheck2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_OtpCheck2_Result">
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="otp" ColumnName="otp" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_resetpssd" FunctionName="dbBankModel.Store.proc_resetpssd" />
+          <FunctionImportMapping FunctionImportName="proc_uptable" FunctionName="dbBankModel.Store.proc_uptable">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_uptable_Result">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_uptable1" FunctionName="dbBankModel.Store.proc_uptable">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_uptable1_Result">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_updatepassword" FunctionName="dbBankModel.Store.proc_updatepassword" />
+          <FunctionImportMapping FunctionImportName="proc_senduserid" FunctionName="dbBankModel.Store.proc_senduserid" />
+          <FunctionImportMapping FunctionImportName="proc_senduserid1" FunctionName="dbBankModel.Store.proc_senduserid">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_senduserid1_Result1">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Mini_Statement1" FunctionName="dbBankModel.Store.proc_Mini_Statement1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_Mini_Statement1_Result">
+                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+                <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+                <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="from_Account_balance" ColumnName="from_Account_balance" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Recent_Transactions" FunctionName="dbBankModel.Store.proc_Recent_Transactions">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_Recent_Transactions_Result">
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+                <ScalarProperty Name="from_account" ColumnName="from_account" />
+                <ScalarProperty Name="to_account" ColumnName="to_account" />
+                <ScalarProperty Name="from_Account_balance" ColumnName="from_Account_balance" />
+                <ScalarProperty Name="to_Account_balance" ColumnName="to_Account_balance" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tblAdminOtps">
+            <EntityTypeMapping TypeName="dbBankModel.tblAdminOtp">
+              <MappingFragment StoreEntitySet="tblAdminOtp">
+                <ScalarProperty Name="opt" ColumnName="opt" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="proc_InsertintotblwithEmailadmin" FunctionName="dbBankModel.Store.proc_InsertintotblwithEmailadmin" />
+          <FunctionImportMapping FunctionImportName="proc_OtpCheckadmin" FunctionName="dbBankModel.Store.proc_OtpCheckadmin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_OtpCheckadmin_Result">
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="opt" ColumnName="opt" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetPendingApplications" FunctionName="dbBankModel.Store.proc_GetPendingApplications">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_GetPendingApplications_Result">
+                <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+                <ScalarProperty Name="First_name" ColumnName="First_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+                <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="aadhar_number" ColumnName="aadhar_number" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_RejectedApplications" FunctionName="dbBankModel.Store.proc_RejectedApplications">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_RejectedApplications_Result">
+                <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+                <ScalarProperty Name="First_name" ColumnName="First_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+                <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="aadhar_number" ColumnName="aadhar_number" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetApprovedCustomers" FunctionName="dbBankModel.Store.proc_GetApprovedCustomers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_GetApprovedCustomers_Result">
+                <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+                <ScalarProperty Name="First_name" ColumnName="First_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+                <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="aadhar_number" ColumnName="aadhar_number" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_InsertApprvCustomersinBankingTble" FunctionName="dbBankModel.Store.proc_InsertApprvCustomersinBankingTble" />
+          <FunctionImportMapping FunctionImportName="proc_GetCustomersProfilesbyReferenceid" FunctionName="dbBankModel.Store.proc_GetCustomersProfilesbyReferenceid">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_GetCustomersProfilesbyReferenceid_Result">
+                <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+                <ScalarProperty Name="First_name" ColumnName="First_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+                <ScalarProperty Name="Father_name" ColumnName="Father_name" />
+                <ScalarProperty Name="mobile_number" ColumnName="mobile_number" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="account_type" ColumnName="account_type" />
+                <ScalarProperty Name="aadhar_number" ColumnName="aadhar_number" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="Residential_address" ColumnName="Residential_address" />
+                <ScalarProperty Name="permanent_address" ColumnName="permanent_address" />
+                <ScalarProperty Name="occupation_Type" ColumnName="occupation_Type" />
+                <ScalarProperty Name="source_of_income" ColumnName="source_of_income" />
+                <ScalarProperty Name="gross_income" ColumnName="gross_income" />
+                <ScalarProperty Name="account_OpenDate" ColumnName="account_OpenDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetheCustomerApplications" FunctionName="dbBankModel.Store.proc_GetheCustomerApplications">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_GetheCustomerApplications_Result">
+                <ScalarProperty Name="Reference_id" ColumnName="Reference_id" />
+                <ScalarProperty Name="First_name" ColumnName="First_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_LoginCheck" FunctionName="dbBankModel.Store.proc_LoginCheck">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_LoginCheck_Result">
+                <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetdetailsForMail" FunctionName="dbBankModel.Store.proc_GetdetailsForMail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankModel.proc_GetdetailsForMail_Result">
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="account_number" ColumnName="account_number" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getEmailId" FunctionName="dbBankModel.Store.sp_getEmailId" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
