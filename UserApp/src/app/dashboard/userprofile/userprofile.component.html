@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                   <th scope="row">Date of Birth:</th>
-                  <td>{{userpro.date_of_birth}}</td>               
+                  <td>{{userpro.date_of_birth|date}}</td>               
                 </tr>
                 <tr>
                   <th scope="row">Residential adrress</th>
@@ -68,6 +68,7 @@
     </div>
     
   </div>
+  
     <div class="form-group" *ngIf="formGroup">
       <mat-divider></mat-divider>
       <br/>
@@ -75,24 +76,41 @@
       
         <tbody>
           <tr>
-            <th scope="row">Edit Residential Address:</th>
-            <td><input type="text" [(ngModel)]="tblcustomer.Residential_address" required>
-              {{tblcustomer.mobile_number}}
-              <button type="button" class="btn btn-primary" (click)="EditResidentialAddressDetails()">Edit</button>
-            </td>
             
+              
+            <th scope="row">Edit Residential Address:</th>
+            <td>
+              <form #radd="ngForm">
+              <input type="text" [(ngModel)]="tblcustomer.Residential_address" required class="form-control" #radd1="ngModel" id="radd" name="radd" >
+            </form>
+            </td>
+            <td>
+            <button [disabled]= "radd.invalid" type="button" class="btn btn-primary" (click)="EditResidentialAddressDetails()">Edit</button>
+            </td>
+          
+
           </tr>
           <tr>
             <th scope="row">Edit Permanent Address:</th>
-            <td><input type="text" [(ngModel)]="tblcustomer.permanent_address" required>
-              <button type="button" class="btn btn-primary" (click)="EditPermanentAddressDetails()">Edit</button>
+            <td>
+              <form #padd="ngForm">
+                <input type="text" [(ngModel)]="tblcustomer.permanent_address" class="form-control" #padd1="ngModel" id="padd" name="padd" required>
+            </form>
+            </td>
+            <td>
+              <button [disabled]= "padd.invalid" type="button" class="btn btn-primary" (click)="EditPermanentAddressDetails()">Edit</button>
             </td>
             
           </tr>
           <tr>
             <th scope="row">Edit Occupation:</th>
-            <td><input type="text" [(ngModel)]="tblcustomer.occupation_Type" required>
-              <button type="button" class="btn btn-primary" (click)=" EditOccupationTypeDetails()">Edit </button>
+            <td>
+              <form #occ="ngForm">
+              <input type="text" [(ngModel)]="tblcustomer.occupation_Type" class="form-control" #occ="ngModel" id="occ" name="occ" required>
+            </form>
+            </td>
+            <td>
+              <button [disabled]= "occ.invalid" type="button" class="btn btn-primary" (click)=" EditOccupationTypeDetails()">Edit </button>
             </td>
             
           </tr>
@@ -105,6 +123,7 @@
       
     </div>
   </div>
+
     
    
   

@@ -544,5 +544,39 @@ namespace User_Project.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_getEmailId", customerIdParameter);
         }
+    
+        public virtual int proc_Insertbalance(Nullable<int> customerid, Nullable<int> accountno, Nullable<int> balance)
+        {
+            var customeridParameter = customerid.HasValue ?
+                new ObjectParameter("customerid", customerid) :
+                new ObjectParameter("customerid", typeof(int));
+    
+            var accountnoParameter = accountno.HasValue ?
+                new ObjectParameter("accountno", accountno) :
+                new ObjectParameter("accountno", typeof(int));
+    
+            var balanceParameter = balance.HasValue ?
+                new ObjectParameter("balance", balance) :
+                new ObjectParameter("balance", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_Insertbalance", customeridParameter, accountnoParameter, balanceParameter);
+        }
+    
+        public virtual int proc_Insertbalance1(Nullable<int> customerid, Nullable<int> accountno, Nullable<int> balance)
+        {
+            var customeridParameter = customerid.HasValue ?
+                new ObjectParameter("customerid", customerid) :
+                new ObjectParameter("customerid", typeof(int));
+    
+            var accountnoParameter = accountno.HasValue ?
+                new ObjectParameter("accountno", accountno) :
+                new ObjectParameter("accountno", typeof(int));
+    
+            var balanceParameter = balance.HasValue ?
+                new ObjectParameter("balance", balance) :
+                new ObjectParameter("balance", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_Insertbalance1", customeridParameter, accountnoParameter, balanceParameter);
+        }
     }
 }

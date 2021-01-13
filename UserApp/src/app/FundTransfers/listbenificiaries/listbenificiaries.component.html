@@ -19,7 +19,13 @@
                     <td><button (click)="onDelete(beneficiary.beneficiary_account_number)" class="btn btn-danger">Delete Beneficiary</button></td>
   
             </tr>
+            <tr *ngIf="beneficiaries==''">
+                <td style="text-align: center;">
+                    <div class="alert alert-danger">No Beneficiaries added yet</div>
+                    
+                </td>
+        </tr>
             <tr><td colspan="3"><hr></td></tr>
-        </table>
+    </table>
     </div>
 </section>

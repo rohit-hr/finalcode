@@ -415,5 +415,7 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_getEmailId" FunctionName="dbBankModel.Store.sp_getEmailId" />
+    <FunctionImportMapping FunctionImportName="proc_Insertbalance" FunctionName="dbBankModel.Store.proc_Insertbalance" />
+    <FunctionImportMapping FunctionImportName="proc_Insertbalance1" FunctionName="dbBankModel.Store.proc_Insertbalance" />
   </EntityContainerMapping>
 </Mapping>

@@ -11,7 +11,7 @@ import { TransactionService } from 'src/app/services/transaction.service';
 export class ListbenificiariesComponent implements OnInit {
   fromAccount:any;
   userId:string |null;
-  accountNo:string|null;
+  accountNo:string |null="";
   beneficiaries:any;
   delete=false;
   message:string="";
@@ -21,15 +21,13 @@ export class ListbenificiariesComponent implements OnInit {
     this.transactionService.getAccountNumber(this.userId).subscribe(a=>{
       console.log(a);
       this.fromAccount=a;
+      this.beneficiaryService.getBeneficiaries(this.fromAccount).subscribe(b=>
+        {
+          console.log(b);
+          this.beneficiaries=b;
+        });
       localStorage.setItem("accountNo",this.fromAccount);
     });
-    this.accountNo=localStorage.getItem("accountNo");
-    console.log(this.accountNo);
-    this.beneficiaryService.getBeneficiaries(this.accountNo).subscribe(b=>
-      {
-        console.log(b);
-        this.beneficiaries=b;
-      });
   }
 
   ngOnInit(): void {
@@ -54,5 +52,4 @@ onDelete(beneficiaryAccountNumber:number){
   window.location.reload();
   }
 }
-
 }

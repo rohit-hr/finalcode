@@ -53,7 +53,7 @@ export class ImpspaymentComponent implements OnInit {
     this.impsPaymentForm = this.formBuilder.group({
       fromAccount: ['', Validators.required],
       toAccount: ['', Validators.required],
-      amount: ['', Validators.required],
+      amount: ['', [Validators.required,Validators.min(1),Validators.max(200000)]],
       // transDate: ['',Validators.required],
       remark: ['', Validators.required],
       password:['', Validators.required]
@@ -95,7 +95,7 @@ export class ImpspaymentComponent implements OnInit {
                   this.emailId=e;
                   this.emailtransaction.email_Id=this.emailId;
                 this.emailtransaction.subject="Payment Transaction Successful";
-                this.emailtransaction.body="Your last transaction was successful";
+                this.emailtransaction.body="Your account with RDNS Bank "+this.transaction.from_account+" was debited with Rs. "+this.transaction.amount+" via IMPS to "+this.transaction.to_account;
                 this.emailTransactionService.sendTransactionEmail(this.emailtransaction).subscribe(e=>console.log(t));
                 });
                 this.router.navigateByUrl('/transfersuccessful/'+this.transaction.from_account);

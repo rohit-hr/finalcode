@@ -30,6 +30,8 @@ export class ForgotChangePasswordComponent implements OnInit {
     
     if(this.confirmpassword==this.newpassword)
     {
+      console.log(this.newpassword);
+      console.log(this.confirmpassword);
       this.userid=localStorage.getItem("userid");
       // this.mail=localStorage.getItem("mail");
       this.user.password=this.confirmpassword;
@@ -42,7 +44,7 @@ export class ForgotChangePasswordComponent implements OnInit {
     }
     else
     {
-      this.resmessage="both the passwords are not same !please check";
+      this.resmessage="Passwords do not match";
     }
   }
   home(){

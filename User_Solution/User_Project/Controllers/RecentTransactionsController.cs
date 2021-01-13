@@ -14,7 +14,7 @@ namespace User_Project.Controllers
     {
         dbBankEntities1 entities = new dbBankEntities1();
         [HttpGet]
-        public HttpResponseMessage GetCustomerNames(int id)
+        public HttpResponseMessage GetRecentTransactions(int id)
         {
 
             var result = entities.proc_Recent_Transactions(id);

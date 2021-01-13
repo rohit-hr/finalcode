@@ -220,6 +220,11 @@
     <Parameter Name="acc_number" Type="bigint" Mode="In" />
     <Parameter Name="acc_date" Type="date" Mode="In" />
   </Function>
+  <Function Name="proc_Insertbalance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="customerid" Type="int" Mode="In" />
+    <Parameter Name="accountno" Type="int" Mode="In" />
+    <Parameter Name="balance" Type="int" Mode="In" />
+  </Function>
   <Function Name="proc_InsertintotblwithEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="email" Type="varchar" Mode="In" />
     <Parameter Name="otp" Type="int" Mode="In" />

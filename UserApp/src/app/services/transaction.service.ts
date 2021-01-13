@@ -8,7 +8,7 @@ export class TransactionService{
     public getAccountNumber(userId:string|null){
         return this.getHttp.get("http://localhost:63882/getAccountNumber?id="+userId);
     }
-    public getBeneficiaries(accountNo:string|null){
+    public getBeneficiaries(accountNo:any){
         return this.getbeneficiary.get("http://localhost:63882/api/Beneficiaries?id="+accountNo);
     }
     public initiateTransaction(transaction:Transaction){

@@ -389,6 +389,16 @@
     <FunctionImport Name="sp_getEmailId" ReturnType="Collection(String)">
       <Parameter Name="customerId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="proc_Insertbalance">
+      <Parameter Name="customerid" Mode="In" Type="Int32" />
+      <Parameter Name="accountno" Mode="In" Type="Int32" />
+      <Parameter Name="balance" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_Insertbalance1">
+      <Parameter Name="customerid" Mode="In" Type="Int32" />
+      <Parameter Name="accountno" Mode="In" Type="Int32" />
+      <Parameter Name="balance" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="Mini_Statement1_Result">
     <Property Type="Int32" Name="transaction_id" Nullable="false" />

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserProfileService } from 'src/app/services/userprofile.service';
 import { tblCustomers } from 'src/app/models/tblCustomers.model';
 import { UserProfile } from 'src/app/models/userprofile.model';
+import { Router } from '@angular/router';
 // import { UserProfile } from '../models/userprofile.model';
 // import { UserProfileService } from '../services/userprofile.service';
 
@@ -20,7 +21,7 @@ export class UserprofileComponent implements OnInit {
     refid:any;
     profile:UserProfile;
     
-   constructor(private userProfileService: UserProfileService) {
+   constructor(private userProfileService: UserProfileService, private route:Router) {
         this.tblcustomer = new tblCustomers();
         this.profile = new UserProfile();
         this.id=localStorage.getItem("userid");
@@ -53,7 +54,8 @@ export class UserprofileComponent implements OnInit {
       //   this.tblcustomer.email_id = this.userprofile[6];
        
        this.userProfileService.EditResidentialAddress(this.refid,this.tblcustomer).subscribe(
-        user=>{console.log("Called")} )
+        user=>{console.log("Called");window.location.reload();} )
+        
      }
 
      EditPermanentAddressDetails()
@@ -61,7 +63,8 @@ export class UserprofileComponent implements OnInit {
       //   this.tblcustomer.email_id = this.userprofile[6];
        
        this.userProfileService.EditPermanentAddress(this.refid,this.tblcustomer).subscribe(
-        user=>{console.log("Called")} )
+        user=>{console.log("Called");window.location.reload();} )
+        
      }
 
      EditOccupationTypeDetails()
@@ -69,7 +72,8 @@ export class UserprofileComponent implements OnInit {
       //   this.tblcustomer.email_id = this.userprofile[6];
        
        this.userProfileService.EditOccupationType(this.refid,this.tblcustomer).subscribe(
-        user=>{console.log("Called")} )
+        user=>{console.log("Called");window.location.reload();} )
+        
      }
 
   ngOnInit(): void {

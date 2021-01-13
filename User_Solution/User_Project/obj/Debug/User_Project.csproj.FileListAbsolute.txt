@@ -145,3 +145,4 @@ D:\Project - Gladiator\User_Solution\User_Project\obj\Debug\User_Project.csproj.
 D:\Project - Gladiator\User_Solution\User_Project\obj\Debug\User_Project.csproj.CopyComplete
 D:\Project - Gladiator\User_Solution\User_Project\obj\Debug\User_Project.dll
 D:\Project - Gladiator\User_Solution\User_Project\obj\Debug\User_Project.pdb
+D:\Project - Gladiator\User_Solution\User_Project\obj\Debug\User_Project.csprojAssemblyReference.cache

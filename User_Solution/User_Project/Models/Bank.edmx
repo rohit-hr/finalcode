@@ -225,6 +225,11 @@
           <Parameter Name="acc_number" Type="bigint" Mode="In" />
           <Parameter Name="acc_date" Type="date" Mode="In" />
         </Function>
+        <Function Name="proc_Insertbalance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="customerid" Type="int" Mode="In" />
+          <Parameter Name="accountno" Type="int" Mode="In" />
+          <Parameter Name="balance" Type="int" Mode="In" />
+        </Function>
         <Function Name="proc_InsertintotblwithEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="email" Type="varchar" Mode="In" />
           <Parameter Name="otp" Type="int" Mode="In" />
@@ -765,7 +770,17 @@
           <Parameter Name="email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_getEmailId" ReturnType="Collection(String)">
-            <Parameter Name="customerId" Mode="In" Type="Int32" />
+          <Parameter Name="customerId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Insertbalance">
+            <Parameter Name="customerid" Mode="In" Type="Int32" />
+            <Parameter Name="accountno" Mode="In" Type="Int32" />
+            <Parameter Name="balance" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Insertbalance1">
+            <Parameter Name="customerid" Mode="In" Type="Int32" />
+            <Parameter Name="accountno" Mode="In" Type="Int32" />
+            <Parameter Name="balance" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Mini_Statement1_Result">
@@ -1376,6 +1391,8 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_getEmailId" FunctionName="dbBankModel.Store.sp_getEmailId" />
+          <FunctionImportMapping FunctionImportName="proc_Insertbalance" FunctionName="dbBankModel.Store.proc_Insertbalance" />
+          <FunctionImportMapping FunctionImportName="proc_Insertbalance1" FunctionName="dbBankModel.Store.proc_Insertbalance" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

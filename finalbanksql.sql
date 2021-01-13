@@ -176,6 +176,7 @@ begin
 where customer_id = @id and transaction_date between @start_date and  @end_date
 end
 
+
 /* To edit details*/
 create procedure get_ReferenceId (@id int)
 as
@@ -199,11 +200,11 @@ select top 5 * from tblTransactions where from_account = @account or to_account 
 end
 
 /*Mini-Statement New Procedure*/
-create procedure proc_Mini_Statement1(@account int,@start_date varchar(10),@end_date varchar(10))
+alter procedure proc_Mini_Statement1(@account int,@start_date varchar(10),@end_date varchar(10))
 as
 begin
 select transaction_id,transaction_type,transaction_date,amount,from_Account_balance,remarks from tblTransactions
-where from_account = @account or to_account = @account and transaction_date between @start_date and @end_date
+where (from_account = @account or to_account = @account) and (transaction_date between @start_date and @end_date)
 end
 ------------------------------------------------------------------------------------
 create proc proc_test(@userid int)
@@ -386,4 +387,9 @@ create procedure sp_getEmailId(@customerId int)
 as begin 
 select c.email_id from tblCustomers c join tblBankingCustomers b on c.Reference_id=b.Reference_id
 where b.customer_id=@customerId
+end
+
+create procedure proc_Insertbalance(@customerid int, @accountno int, @balance int)
+as begin
+	insert into tblBalance (customer_id, account_number, balance ) values (@customerid,@accountno, @balance)
 end

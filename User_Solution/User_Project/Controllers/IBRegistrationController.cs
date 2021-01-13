@@ -59,7 +59,12 @@ namespace User_Project.Controllers
                 }
                 else
                 {
+                    tblBalance bal = new tblBalance();
+                    bal.account_number = tblbank.account_number;
+                    bal.customer_id = tblbank.user_id;
+                    bal.balance = 25000;
                     entities.tblNetBankings.Add(tblbank);
+                    entities.tblBalances.Add(bal);
                     entities.SaveChanges();
                     return Request.CreateResponse<proc_test1_Result>(result);
                 }

@@ -24,7 +24,7 @@
                <tr>
                  <td><label>To Account</label></td>
                  <td> <select class="custom-select" class="form-control transparent-input" type="text" formControlName="toAccount" >
-                  <option *ngFor="let beneficiary of beneficiaries" [value]="beneficiary.beneficiary_account_number">{{beneficiary.beneficiary_account_number}}</option>
+                  <option *ngFor="let beneficiary of beneficiaries" [value]="beneficiary.beneficiary_account_number">{{beneficiary.beneficiary_account_number}}-{{beneficiary.nickname}}</option>
                 </select>
                   <div *ngIf="submitted && f.toAccount.errors">
                       <div *ngIf="f.toAccount.errors.required" class="alert alert-danger"><mat-icon>error_outline</mat-icon><span style="vertical-align: top;">To Account field is required</span></div>
@@ -39,7 +39,13 @@
                   <input class="form-control transparent-input" type="number" formControlName="amount"/>
                   <div *ngIf="submitted && f.amount.errors">
                       <div *ngIf="f.amount.errors.required" class="alert alert-danger"><mat-icon>error_outline</mat-icon><span style="vertical-align: top;">Please Enter the Amount</span></div>
-                  </div>
+                      <div *ngIf="f.amount.errors.min" class="alert alert-danger">
+                        <mat-icon>error_outline</mat-icon><span style="vertical-align: top;">Minimum amount: Rs.1</span>
+                      </div>
+                      <div *ngIf="f.amount.errors.max" class="alert alert-danger">
+                        <mat-icon>error_outline</mat-icon><span style="vertical-align: top;">Maximum amount: Rs.10,00,000</span>
+                      </div>
+                    </div>
                  </td>
                </tr>
                <!-- <tr>

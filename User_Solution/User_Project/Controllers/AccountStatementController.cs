@@ -15,7 +15,7 @@ namespace User_Project.Controllers
         dbBankEntities1 entities = new dbBankEntities1();
 
         [HttpGet]
-        public HttpResponseMessage GetCustomerNames([FromUri] int id, string start_date, string end_date)
+        public HttpResponseMessage GetAccountStatement([FromUri] int id, string start_date, string end_date)
         {
 
             var result = entities.proc_Mini_Statement1(id, start_date, end_date);

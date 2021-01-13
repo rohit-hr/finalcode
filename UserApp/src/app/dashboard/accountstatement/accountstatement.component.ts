@@ -10,7 +10,7 @@ import { AccountSummaryService } from 'src/app/services/accountsummary.service';
 export class AccountstatementComponent implements OnInit {
   id:any;  
   start_date:string = '2021-01-10';
-    end_date:string ='2021-01-25';
+    end_date:string ='2021-01-14';
     seeStatement_toggle:boolean=false;
    account_number:any;
   accountstatement:any;

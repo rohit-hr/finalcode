@@ -15,7 +15,7 @@ namespace User_Project.Controllers
         dbBankEntities1 entities = new dbBankEntities1();
 
         [HttpGet]
-        public HttpResponseMessage GetCustomerNames(int id)
+        public HttpResponseMessage GetApplication(int id)
         {
 
             var result = entities.trackApplication(id);
