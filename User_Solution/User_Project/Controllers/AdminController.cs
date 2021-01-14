@@ -14,7 +14,7 @@ namespace User_Project.Controllers
 {
     [RoutePrefix("Divya")]
     [DataContract]
-    [EnableCors(origins: "http://localhost:56803", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:62299", headers: "*", methods: "*")]
     public class AdminController : ApiController
     {
 

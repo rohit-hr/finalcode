@@ -393,3 +393,15 @@ create procedure proc_Insertbalance(@customerid int, @accountno int, @balance in
 as begin
 	insert into tblBalance (customer_id, account_number, balance ) values (@customerid,@accountno, @balance)
 end
+
+------------------------------------------------------------------------------------------------------------------
+/*Admin*/
+create table tblAdminOtp(
+ email_id varchar(40),
+ opt int primary key)
+
+create proc proc_LoginCheck(@id varchar(20),@pass varchar(20))
+as
+begin
+select admin_id,password from tbladmin where admin_id=@id and password=@pass
+end

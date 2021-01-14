@@ -5,11 +5,25 @@
 <div class="container" style="text-align: center;">
       <h1 >Track Your Application Status</h1>
 </div>
+<table style="margin: 0 auto">
+  <td>
+    <!-- <div class="container" style="text-align: center;"> -->
+      <form #trackapp="ngForm">
+        <div class="form-group" style="width:200px;margin: 0 auto;">
+          <input type="text" [(ngModel)]="Reference_id" class="form-control" placeholder="Enter your Reference ID"
+             id="trackapp" name="trackapp" required #trackRef="ngModel">
+        </div>
+      </form>
+  </td>
 
-<div class="container" style="text-align: center;">
-  <input type="text" [(ngModel)]="Reference_id" placeholder="Enter your Reference ID" style="margin-right: 10px;">
-  <button type="button" class="btn btn-primary" (click)="TrackApplicationDetails()">Track </button>
-</div>
+  <td>
+    <div class="form-group">
+      <button [disabled]="trackapp.invalid" type="button"  class="btn btn-primary"
+        (click)="TrackApplicationDetails()" style="margin-top: -5px;">Track</button>
+    </div>
+  </td>
+</table>
+
 <div class="container" style="align-content:center" *ngFor="let trackapp of trackapplication">
               <table class="table">
                     <tbody>
